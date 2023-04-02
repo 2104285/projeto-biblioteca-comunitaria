@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        body{
+            background-repeat: no-repeat;
+        }
+
+        h3{
+            align-self: center center;
+        }
+
+        form{
+                text-align: center;
+                padding: 10px;
+        }
+    </style>
+</head>
+<body background="imagens/background_biblioteca.jpg">
+    <br>
+    <div class="container">
+        <form action="wp2_inicio.html" method="post" autocomplete="off">
+            <fieldset>  <!--agrupa campos-->
+                <div>
+                    <img src="img/ligueeleiabrown.png" alt="logo_ligueleia">
+                </div>
+                <h3>identificação</h3> <!--título ao fieldset-->
+                <hr>
+                <br>
+                <div>
+                    <label for="user">usuário</label><br>
+                    <input type="email" name="user" id="user" placeholder="gmail" size="30" required> <!--login da conta google-->
+                </div>
+                <br>
+                <div>
+                    <label for="password">senha</label><br>
+                    <input type="password" name="password" id="password" size="30" required>
+                </div>
+                <br>
+                <input type="submit" value="entrar">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

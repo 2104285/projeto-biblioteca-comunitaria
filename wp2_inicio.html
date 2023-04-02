@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inicial</title>
+<style>
+    .container{     
+        display: flex;          /*display: flex; cria itens dentro do conteiner alinhados na horizontal*/
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        background-color: orangered;
+    }
+
+    .item{
+        color: antiquewhite;
+    }
+
+    a{
+        color: antiquewhite;
+    }
+
+    .box{
+        width: auto;
+        height: auto;
+        border: 5px solid #aaa;
+    }
+
+
+    table{
+        border-collapse: separate;
+        margin: auto;               /*centraliza a tabela*/
+    }
+    tbody tr{
+        height: 30px;
+        text-align: center;         /*centraliza texto dentro das células*/
+    }
+
+</style>        
+</head>
+<body>
+    <fieldset>
+        <div class="container">
+            <div class="item">
+                <h4><a href="wp2_inicio.html">início</a></h4>
+            </div>
+            <div class="item">
+                <h4><a href="wp3_leitores.html">leitores</a></h4>            
+            </div>
+            <div class="item">
+                <h4><a href="wp4_acervo.html">acervo</a></h4>
+            </div>
+            <div class="item">
+                <h4><a href="wp5_emprestimo.html">empréstimo</a></h4>
+            </div>
+            <div class="item">
+                <h4>admin</h4>
+            </div>
+            <div class="item">
+                <h4><a href="wp6_logout.html">sair</a></h4>
+            </div>
+        </div>
+        <div class="box">
+            <h3 style="text-align: center;">status geral</h3>
+            <table border="1" width="auto">     <!--criar tabela-->
+                <thead>                         <!--cabeça da tabela-->
+                    <tr>                        <!--criar o nome das colunas-->
+                        <th width="300">total de livros no acervo</th>
+                        <th width="300">total de livros emprestados</th>
+                        <th width="300">total de livros disponíveis</th>
+                    </tr>
+                </thead>
+                <tbody>                         <!--criar o corpo da tabela-->
+                    <tr>
+                        <td width="300">5000</td>
+                        <td width="300">2</td>
+                        <td width="300">4998</td>
+                    </tr>
+                </tbody>
+            </table>       
+            <br>
+            <hr>
+            <div>
+                <h3 style="text-align: center;">status dos livros emprestados</h3>
+                <table border="1" width="auto">     <!--criar tabela-->
+                    <thead>                         <!--cabeça da tabela-->
+                        <tr>
+                            <th width="300">prazo em dia</th>
+                            <th width="300">prazo atrasado</th>
+                            <th width="300">total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        </form>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+    </fieldset>
+</body>
+</html>
