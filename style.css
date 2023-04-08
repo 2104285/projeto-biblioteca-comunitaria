@@ -1,4 +1,5 @@
 *{
+    font-family: 'Quicksand', sans-serif;
     margin: 0;                             /*sem margem*/
     padding: 0;                             /*sem espaços*/
     box-sizing: border-box; 
@@ -85,7 +86,7 @@ nav li a:hover{                             /*animação quando estiver com o mo
 img{                                        /*imagem da página de login*/
     margin:auto;
     display: block;
-    border-radius: 3rem;
+    border-radius: 12px;
 }
 
 .container{                                 /*alinhamento da página de login*/
@@ -134,11 +135,39 @@ h5{                                             /*alinhamento pg de logout*/
     text-align: center;
 }
 
-#caixa-login{
+#caixa-login{                                    /* Estilo da caixa de login */
     margin-top: 100px;
     padding: 30px;
-    width: 600px;
+    width: 500px;
     background: #F5F5F5;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 21px;
+}
+
+.label-login{
+    display: inline-block;
+    width: 70px;
+    text-align: left;
+    vertical-align:middle;
+}
+
+#botao-entrar{
+    width: 200px;
+    height: 56px;
+    font-weight: bold;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+    border: 0;
+}
+
+.input-login{
+    background: rgba(255, 253, 253, 0.38);
+    border: 1px solid #C1E4F8;
+    border-radius: 6px;
+}
+
+h3{
+    font-weight:lighter;
+    font-size: 20px;
 }
