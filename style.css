@@ -1,0 +1,135 @@
+*{
+    margin: 0;                              /*sem margem*/
+    padding: 0;                             /*sem espaços*/
+    box-sizing: border-box; 
+}
+
+nav{                                        /*estilizar a barra horizontal*/
+    background-color: #cf601c;            /*cor da barra*/
+    display: flex;
+    justify-content: center;                /*centraliza a barra horizontal*/
+    margin-top: 0.5rem;                     /*margem acima da barra horizontal*/
+    border-radius: 0.5rem;                  /*borda arredondada*/
+    height: 2.9rem;                         /*altura da barra*/
+}
+
+nav li{                                     /*estilizar a lista*/
+    display: inline-block;                  /*lista alinhada na horizontal*/
+    padding: 0.1rem;                        /*aumenta o preenchimento do bloco*/
+}
+
+nav li a{                                   /*estilizar os links*/
+    color: #d8d1c8;                       /*cor das letras*/
+    display: inline-block;                  /*aumenta verticalmente a barra*/
+    text-decoration: none;                  /*retira o sublinhado*/
+    padding: 0.64rem;                       /*espaçamento entre os itens*/
+}
+
+nav li a:hover{                             /*animação quando estiver com o mouse em cima*/
+    background-color: #ce3537;            /*alterar para esta cor*/
+    transition: .4s;                        /*transição mais suave*/
+}
+
+.submenu{                                   /*específico do submenu dos itens do leitor*/
+    position: absolute;                     /*deixa os itens abaixo, na horizontal*/
+    box-shadow: 0 0 0.4rem black;         /*cria borda no submenu*/
+    display: none;                          /*ocultar o submenu*/
+    background-color: #4f4543;
+    width: 12rem;
+}
+
+.submenu a{                                 /*estilizar o submenu*/
+    display: block;                         /*cria estrutura de bloco, na vertical*/
+}
+
+.dropdown:hover .submenu{                   /*aparecer o submenu!!*/
+    display: block;                         /*formato bloco*/
+    border-left: 0.2rem solid  black;     /*borda no submenu*/
+    border-bottom: 0.15rem solid  black;  /*borda inferior no submenu*/
+}
+
+.submenu1{                                  /*específico do submenu dos itens do acervo*/
+    position: absolute;                     /*deixa os itens abaixo, na horizontal*/
+    box-shadow: 0 0 0.4rem black;         /*cria borda no submenu*/
+    display: none;                          /*ocultar o submenu*/
+    background-color: #4f4543
+}
+
+.submenu1 a{                                /*estilizar o submenu*/
+    display: block;                         /*cria estrutura de bloco, na vertical*/
+}
+
+.dropdown1:hover .submenu1{                 /*aparecer o submenu!!*/
+    display: block;                         /*formato bloco*/
+    border-left: 0.2rem solid black;      /*borda no submenu*/
+    border-bottom: 0.15rem solid black;   /*borda inferior no submenu*/
+}
+
+.submenu2{                                  /*específico do submenu dos itens do empréstimo*/
+    position: absolute;                     /*deixa os itens abaixo, na horizontal*/
+    box-shadow: 0 0 0.4rem black;         /*cria borda no submenu*/
+    display: none;                          /*ocultar o submenu*/
+    background-color: #4f4543
+}
+
+.submenu2 a{                                /*estilizar o submenu*/
+    display: block;                         /*cria estrutura de bloco, na vertical*/
+}
+
+.dropdown2:hover .submenu2{                 /*aparecer o submenu!!*/
+    display: block;                         /*formato bloco*/
+    border-left: 0.2rem solid black;      /*borda no submenu*/
+    border-bottom: 0.15rem solid black;   /*borda inferior no submenu*/
+}
+
+img{                                        /*imagem da página de login*/
+    margin:auto;
+    display: block;
+    border-radius: 3rem;
+}
+
+.container{                                 /*alinhamento da página de login*/
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.site{                                      /*alinhamento do h3, página início*/
+    text-align: center;
+}
+
+.box{                                       /*caixa da página de leitores geral*/
+    width: auto;
+    height: auto;
+    border: 0.5rem solid #d8d1c8;
+    border-radius: 0.5rem;
+    padding-top: 2rem;
+}
+
+.titulo_leitor{                             /*alinhamento central, página de leitor geral*/
+    text-align: center;
+}
+
+mark{
+    color: #ce3537;
+    background-color: #f0cb3b;
+}
+
+table{                                      /*tabela utilizada em várias páginas*/
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+p{                                          /*alinhamento, pg localizar leitor e livro*/
+    text-align: center;
+    color: #8f8787;
+
+}
+
+h4{                                             /*alinhamento pg de logout*/
+    text-align: center;
+}
+
+h5{                                             /*alinhamento pg de logout*/
+    text-align: center;
+}
