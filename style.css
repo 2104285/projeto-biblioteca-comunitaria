@@ -192,21 +192,23 @@ h3{
     border: 0;
 }
 
-.label-cadastro{
-    display: inline;
-}
-
 .item-box-cadastro{
     margin: 10px;
 }
 
 .box-cadastro{
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
+.label-cadastro{
+    text-align: left;
+    margin: 0;
+}
+
 .form-control{
-    width: 400px;
+    width: 300px;
+    display: inline-block;
 }
 
 .btn{
