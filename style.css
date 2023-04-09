@@ -135,7 +135,7 @@ mark{
 
 p{                                          /*alinhamento, pg localizar leitor e livro*/
     text-align: center;
-    color: #8f8787;
+    color: #444141;
 
 }
 
@@ -214,5 +214,34 @@ h3{
 .btn{
     width: 150px;
     margin-top: 20px;
-    margin-left: 250px;
+}
+
+.box-filtro-leitor{
+    margin: auto;
+    padding: 0;
+    display: inline-block;
+}
+
+
+
+.box-filtro-leitor li{
+    display: inline-block;
+}
+
+.input-filtro{
+    width: 200px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.botao-filtro{
+    margin-top: 0;
+    width: 150px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.box-filtro{
+    width: 90%;
+    margin: auto;
 }
