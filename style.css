@@ -117,7 +117,7 @@ img{                                        /*imagem da página de login*/
 .titulo_leitor{                             /*alinhamento central, página de leitor geral*/
 /*    text-align: center;                   Rafael: Acho mais bonito alinhado a esquerda do que central */
     padding: 10px;
-    padding-left: 100px;
+    padding-left: 200px;
     font-weight: bold;
 }
 
@@ -190,4 +190,27 @@ h3{
 
 .botao-icone{
     border: 0;
+}
+
+.label-cadastro{
+    display: inline;
+}
+
+.item-box-cadastro{
+    margin: 10px;
+}
+
+.box-cadastro{
+    width: 80%;
+    margin: auto;
+}
+
+.form-control{
+    width: 400px;
+}
+
+.btn{
+    width: 150px;
+    margin-top: 20px;
+    margin-left: 250px;
 }
