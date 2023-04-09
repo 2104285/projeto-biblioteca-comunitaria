@@ -5,32 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="bootstrap.css"> 
     <link rel="stylesheet" href="style.css">           
-    <link rel="stylesheet" href="bootstrap.css">         
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">        
     <title>Login</title>
 </head>
-<body>
-    <div class="container">
+<body background="img/Background-login.png">
+    <div class="container" id="caixa-login">
         <form action="wp2_inicio.html" method="post" autocomplete="off">
             <fieldset>                  <!--agrupa os campos-->
                 <div>
                     <img src="img/ligueeleiabrown.png" alt="logo_ligueleia">
                 </div>
                 <br>
-                <h3>identificação</h3> <!--título ao fieldset-->
+                <h3>IDENTIFICAÇÃO</h3> <!--título ao fieldset-->
                 <hr>
                 <br>
                 <div>
-                    <label for="user">usuário</label><br>
-                    <input type="email" name="user" id="user" placeholder="gmail" size="30" required> <!--login da conta google-->
+                    <label for="user" class="label-login">Usuário: </label>
+                    <input type="email" name="user" id="user" placeholder="E-mail" size="30" required class="form-control"> <!--login da conta google-->
                 </div>
                 <br>
                 <div>
-                    <label for="password">senha</label><br>
-                    <input type="password" name="password" id="password" size="30" required>
+                    <label for="password" class="label-login">Senha:</label>
+                    <input type="password" name="password" id="password" size="30" required class="form-control">
                 </div>
                 <br>
-                <input type="submit" value="entrar">
+                <input type="submit" value="Entrar" id="botao-entrar">
             </fieldset>
         </form>
     </div>
