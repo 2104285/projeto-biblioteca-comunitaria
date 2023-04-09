@@ -9,14 +9,22 @@ nav{                                        /*estilizar a barra horizontal*/
     background-color: #cf601c;            /*cor da barra*/
     display: flex;
     justify-content: center;                /*centraliza a barra horizontal*/
-    margin-top: 0.5rem;                     /*margem acima da barra horizontal*/
-    border-radius: 0.5rem;                  /*borda arredondada*/
-    height: 2.9rem;                         /*altura da barra*/
+/*    margin-top: 0.5rem;                     /*margem acima da barra horizontal*/
+/*   border-radius: 0.5rem;                  /*borda arredondada*/
+    height: auto;                         /*altura da barra*/
+}
+
+nav ul{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    margin:0
 }
 
 nav li{                                     /*estilizar a lista*/
     display: inline-block;                  /*lista alinhada na horizontal*/
     padding: 0.1rem;                        /*aumenta o preenchimento do bloco*/
+    margin: 10px;
 }
 
 nav li a{                                   /*estilizar os links*/
@@ -101,13 +109,16 @@ img{                                        /*imagem da página de login*/
 .box{                                       /*caixa da página de leitores geral*/
     width: auto;
     height: auto;
-    border: 0.5rem solid #d8d1c8;
+ /*   border: 0.5rem solid #d8d1c8; */
     border-radius: 0.5rem;
     padding-top: 2rem;
 }
 
 .titulo_leitor{                             /*alinhamento central, página de leitor geral*/
-    text-align: center;
+/*    text-align: center;                   Rafael: Acho mais bonito alinhado a esquerda do que central */
+    padding: 10px;
+    padding-left: 100px;
+    font-weight: bold;
 }
 
 mark{
@@ -115,9 +126,10 @@ mark{
     background-color: #f0cb3b;
 }
 
-table{                                      /*tabela utilizada em várias páginas*/
-    width: 100%;
+.table{                                      /*tabela utilizada em várias páginas*/
+    width: 90%;
     height: 100%;
+    margin: auto;
     text-align: center;
 }
 
@@ -174,4 +186,8 @@ h5{                                             /*alinhamento pg de logout*/
 h3{
     font-weight:lighter;
     font-size: 20px;
+}
+
+.botao-icone{
+    border: 0;
 }
