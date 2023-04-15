@@ -1,0 +1,32 @@
+{% extends 'biblioteca/base_login.html' %}
+{% load static %}
+{% block content %}
+<body background="{% static '/img/Background-login.png' %}">
+    <div>
+        <div class="container" id="caixa-login" >
+            <form action="{% url 'inicio' %}" method="post" autocomplete="off">
+                <fieldset>                  <!--agrupa os campos-->
+                    <div>
+                        <img src="{% static '/img/ligueeleiabrown.png'%}" alt="logo_ligueleia">
+                    </div>
+                    <br>
+                    <h3>IDENTIFICAÇÃO</h3> <!--título ao fieldset-->
+                    <hr>
+                    <br>
+                    <div>
+                        <label for="user" class="label-login">Usuário: </label>
+                        <input type="email" name="user" id="user" placeholder="E-mail" size="30" required class="form-control"> <!--login da conta google-->
+                    </div>
+                    <br>
+                    <div>
+                        <label for="password" class="label-login">Senha:</label>
+                        <input type="password" name="password" id="password" size="30" required class="form-control">
+                    </div>
+                    <br>
+                    <input type="submit" value="Entrar" id="botao-entrar">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
