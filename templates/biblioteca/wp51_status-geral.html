@@ -1,115 +1,69 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="bootstrap.css">           <!--link para arquivo bootstrap.css-->
-    <link rel="stylesheet" href="style.css">               <!--link para arquivo css-->
-    <title>Status geral</title>
-</head>
-<body>
-    <nav>                                                   <!--menu de navegação-->
-        <ul>                                                <!--lista não ordenada-->
-            <li>                                            <!--itens da lista-->
-                <a href="wp2_inicio.html">Início</a>                <!--link-->
-            </li>
-            <li class="dropdown">                           <!--criar dropdown menu para aba leitores-->
-                <a href="">Leitores &#9660</a>              <!--link para acessar a página, &#9660 seta para baixo-->
-                <div class="submenu">                       <!--submenu para aba leitores-->
-                    <a href="wp31_leitor-geral.html">Relação Completa</a>         <!--link dos itens do submenu-->
-                    <a href="wp32_novo-leitor.html">Cadastrar Novo Leitor</a>
-            <!--    <a href="wp33_localizar-leitor.html">localizar leitor</a>      não precisa dessa página-->
-                </div>
-            </li>
-            <li class="dropdown1">                          <!--novo dropdown menu para a aba acervo-->
-                <a href="">Acervo &#9660</a>
-                <div class="submenu1">
-                    <a href="wp41_acervo-geral.html">Relação Completa</a>
-                    <a href="wp42_novo-livro.html">Cadastrar Novo Livro</a>
-            <!--    <a href="wp43_localizar-livro.html">localizar livro</a>     não precisa dessa página-->
-                </div>
-            </li>
-            <li class="dropdown2">                          <!--dropdown para aba empréstimo-->
-                <a href=""><u>Empréstimo &#9660</u></a>
-                <div class="submenu2">
-                    <a href="wp51_status-geral.html">Status Geral</a>
-                    <a href="wp52_novo-emprestimo.html">Cadastrar Novo Empréstimo</a>
-                </div>
+{% extends 'biblioteca/base.html' %}
+{% block title%}Emprestimo{% endblock %}
+{% block content %}
+<div class="box">
+    <h3 class="titulo_leitor">Status dos Livros Emprestados:</h3>                                    <!--resultado da busca-->
+    <div class="box-filtro">
+        <ul style="list-style-type:none" class="box-filtro-leitor">
+            <li>
+                <input class="form-control input-filtro" type="text" placeholder="ID Leitor" size="30" autocomplete="off">
             </li>
             <li>
-                <a href="wp6_logout.html">Sair &#10149</a>                 <!--logout, &#10149 indicação de sair-->
+                <input class="form-control input-filtro" type="text" placeholder="Tombo" size="30" autocomplete="off">
+            </li>
+            <li>
+                <p class="filter-label">Data Emprestimo</p>
+                <input class="form-control input-filtro" type="date">
+            </li>
+            <li>
+                <p class="filter-label">Data Devolução</p>
+                <input class="form-control input-filtro" type="date">
             </li>
         </ul>
-    </nav>
-    <div class="box">
-        <h3 class="titulo_leitor">Status dos Livros Emprestados:</h3>                                    <!--resultado da busca-->
-        <div class="box-filtro">
-            <ul style="list-style-type:none" class="box-filtro-leitor">
-                <li>
-                    <input class="form-control input-filtro" type="text" placeholder="ID Leitor" size="30" autocomplete="off">
-                </li>
-                <li>
-                    <input class="form-control input-filtro" type="text" placeholder="Tombo" size="30" autocomplete="off">
-                </li>
-                <li>
-                    <p class="filter-label">Data Emprestimo</p>
-                    <input class="form-control input-filtro" type="date">
-                </li>
-                <li>
-                    <p class="filter-label">Data Devolução</p>
-                    <input class="form-control input-filtro" type="date">
-                </li>
-            </ul>
-            <ul style="list-style-type:none" class="box-filtro-leitor">
-                <li >
-                    <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
-                </li>
-                <li>
-                    <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
-                </li>
-            </ul>
-        </div>
-        <table class="table table-striped table-bordered table-condensed table-hover">      <!--criar tabela-->
-            <thead>                         <!--cabeça da tabela-->
-                <tr>                        <!--criar o nome das colunas-->
-                    <th width="10">ID_leitor</th>
-                    <th width="300">Leitor</th>
-                    <th width="10">Tombo</th>
-                    <th width="300">Livro</th>
-                    <th width="160">Data Empréstimo</th>
-                    <th width="140">Data Devolução</th>
-                    <th width="10">Status</th>
-                    <th width="10">Renovar +30 dias</th>
-                </tr>
-            </thead>
-            <tbody>                         <!--criar o corpo da tabela-->
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Atrasado</td>
-                    <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Em dia</td>
-                    <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
-                </tr>
-            </tbody>
-        </table>
+        <ul style="list-style-type:none" class="box-filtro-leitor">
+            <li >
+                <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+            </li>
+            <li>
+                <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
+            </li>
+        </ul>
     </div>
-</body>
-</html>
+    <table class="table table-striped table-bordered table-condensed table-hover">      <!--criar tabela-->
+        <thead>                         <!--cabeça da tabela-->
+            <tr>                        <!--criar o nome das colunas-->
+                <th width="10">ID_leitor</th>
+                <th width="300">Leitor</th>
+                <th width="10">Tombo</th>
+                <th width="300">Livro</th>
+                <th width="160">Data Empréstimo</th>
+                <th width="140">Data Devolução</th>
+                <th width="10">Status</th>
+                <th width="10">Renovar +30 dias</th>
+            </tr>
+        </thead>
+        <tbody>                         <!--criar o corpo da tabela-->
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Atrasado</td>
+                <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Em dia</td>
+                <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
