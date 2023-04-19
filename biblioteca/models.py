@@ -130,9 +130,6 @@ class TbEmprestimo(models.Model):
     data_devolucao = models.DateField(blank=True, null=True)
     obs_devolucao = models.CharField(max_length=255, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'tb_emprestimo'
 
 
 class TbLeitor(models.Model):
@@ -143,9 +140,6 @@ class TbLeitor(models.Model):
     endereco = models.CharField(max_length=255, blank=True, null=True)
     bairro = models.CharField(max_length=45, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'tb_leitor'
 
 
 class TbLivro(models.Model):
@@ -154,6 +148,3 @@ class TbLivro(models.Model):
     autor = models.CharField(max_length=255, blank=True, null=True)
     codigo = models.CharField(max_length=255, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'tb_livro'
