@@ -1,0 +1,85 @@
+{% extends 'biblioteca/base.html' %}
+{% block title %}Acervo{% endblock %}
+{% block content %}
+<div class="box">
+    <h3 class="titulo_leitor">Acervo Geral</h3>
+    <div class="box-filtro">
+        <ul style="list-style-type:none" class="box-filtro-leitor">
+            <li>
+                <input class="form-control input-filtro" type="text" placeholder="Nome do Livro" size="30" autocomplete="off">
+            </li>
+            <li>
+                <input class="form-control input-filtro" type="text" placeholder="Autor Livro" size="30" autocomplete="off">
+            </li>
+            <li>
+                <input class="form-control input-filtro" type="text" placeholder="Classificação" size="30" autocomplete="off">
+            </li>
+        </ul>
+        <ul style="list-style-type:none" class="box-filtro-leitor">
+            <li >
+                <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+            </li>
+            <li>
+                <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
+            </li>
+        </ul>
+    </div>
+    <table class="table table-striped table-bordered table-condensed table-hover">                  <!--criar tabela-->
+        <thead>                         <!--cabeça da tabela-->
+            <tr>                        <!--criar o nome das colunas-->
+                <th width="50">Tombo</th>
+                <th width="250">Livro</th>
+                <th width="250">Autor</th>
+                <th width="100">Classificação</th>
+                <th width="50">Quantidade</th>
+                <th width="50">Disponíveis</th>
+                <th width="60">Editar</th>
+                <th width="60">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>                         <!--criar o corpo da tabela-->
+            <tr>
+                <td>1</td>
+                <td>1984</td>
+                <td>George Orwell</td>
+                <td>adulto</td>
+                <td>1</td>
+                <td>1</td>
+                <td><button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
+                <td><button class="botao-icone">&#x274C</button></td>               <!--emoji proibido-->
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+            </tr>    
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</div>
+{% endblock %}
