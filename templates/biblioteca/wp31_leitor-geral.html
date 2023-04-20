@@ -31,7 +31,6 @@
                 <th width="50">ID_leitor</th>
                 <th width="250">Nome</th>
                 <th width="250">Logradouro</th>
-                <th width="50">N°</th>
                 <th width="150">Bairro</th>
                 <th width="50">DDD</th>
                 <th width="150">Telefone</th>
@@ -41,66 +40,20 @@
             </tr>
         </thead>
         <tbody>                         <!--criar o corpo da tabela-->
+            {% for dados in leitor %}
             <tr>
-                <td>1</td>
-                <td>Pedro Pereira Dias</td>
-                <td>Rua Sete de Setembro</td>
-                <td>581</td>
-                <td>Jardim Alvorada</td>
-                <td>11</td>
-                <td>91234-5678</td>
+                <td>{{dados.leitor_id}}</td>
+                <td>{{ dados.nome }}</td>
+                <td>{{ dados.endereco }}</td>>
+                <td>{{ dados.bairro }}</td>
+                <td>{{ dados.ddd }}</td>
+                <td>{{ dados.telefone }}</td>
                 <td><button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
                 <td><button class="botao-icone">&#x2705</button></td>               <!--emoji flag verde-->
                 <td><button class="botao-icone">&#x1F6AB</button></td>               <!--emoji proibido-->
             </tr>
-            <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>    
-            <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
+            
         </tbody>
     </table>
     <br>

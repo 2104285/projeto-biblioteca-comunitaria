@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from biblioteca.models import TbLeitor
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
@@ -7,7 +8,8 @@ def inicio(request):
     return render(request,'biblioteca/wp2_inicio.html')
 
 def leitor_geral(request):
-    return render(request,'biblioteca/wp31_leitor-geral.html')
+    leitor = TbLeitor.objects.all()
+    return render(request,'biblioteca/wp31_leitor-geral.html',{"leitor": leitor})
 
 def cadastro_leitor(request):
     return render(request, 'biblioteca/wp32_novo-leitor.html')
