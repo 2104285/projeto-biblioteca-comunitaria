@@ -4,36 +4,33 @@
 
 <div class="box">
     <h3 class="titulo_leitor">Cadastrar Novo Leitor</h3>   <!--título tabela-->
-    <div>
+    <form method="post">
+        {% csrf_token %}
         <ul style="list-style-type:none" class="box-cadastro">
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Nome</p>
-                <input class="form-control" type="text" placeholder="Insira o nome" size="30" autocomplete="off" required>
+                <input name='nome' class="form-control" type="text" placeholder="Insira o nome" size="30" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
-                <p class="label-cadastro">Logradouro</p>
-                <input class="form-control" type="text" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">N°</p>
-                <input class="form-control" type="number" name="n" id="n" size="3" required>
+                <p class="label-cadastro">Endereço</p>
+                <input name='endereco' class="form-control" type="text" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Bairro</p>
-                <input class="form-control" type="text" size="20" required>
+                <input name='bairro' class="form-control" type="text" size="20" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">DDD</p>
-                <input class="form-control" type="number" placeholder="(11)" size="3" required>
+                <input name='ddd' class="form-control" type="number" placeholder="(11)" size="3" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Telefone</p>
-                <input class="form-control" type="tel" size="20" autocomplete="off" pattern="^\d{4,5}-\d{4}$" placeholder="xxxxx-xxxx" required>
+                <input name='telefone' class="form-control" type="tel" size="20" autocomplete="off"  placeholder="xxxxx-xxxx" required>
             </li>
             <li class="item-box-cadastro">
                 <input class="btn btn-primary" type="submit" value="Salvar">
             </li>
         </ul>
-    </div>
+    </form>
 </div>
 {% endblock %}

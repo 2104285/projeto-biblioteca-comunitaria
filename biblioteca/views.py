@@ -34,7 +34,17 @@ def leitor_geral(request):
                   {"leitor": page_obj, "id":id,"nome":nome,"telefone":telefone})
 
 def cadastro_leitor(request):
-    return render(request, 'biblioteca/wp32_novo-leitor.html')
+    if request.method == "POST":
+        cadastro = TbLeitor()
+        cadastro.nome = request.POST["nome"]
+        cadastro.endereco = request.POST["endereco"]
+        cadastro.bairro = request.POST["bairro"]
+        cadastro.ddd = request.POST["ddd"]
+        cadastro.telefone = request.POST["telefone"]
+        cadastro.save()
+        return render(request, 'biblioteca/wp32_novo-leitor.html')
+    else:
+        return render(request, 'biblioteca/wp32_novo-leitor.html')
 
 def acervo_geral(request):
     return render(request, 'biblioteca/wp41_acervo-geral.html')
