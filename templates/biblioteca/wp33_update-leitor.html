@@ -1,0 +1,40 @@
+{% extends 'biblioteca/base.html' %}
+{% block title %}Novo Leitor{% endblock %}
+{% block content %}
+
+<div class="box">
+    <h3 class="titulo_leitor">Atualizar Leitor</h3>   <!--título tabela-->
+    <form method="post">
+        {% csrf_token %}
+        <ul style="list-style-type:none" class="box-cadastro">
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">ID</p>
+                <input name='id' class="form-control" type="text" value="{{leitor.leitor_id}}" disabled>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Nome</p>
+                <input name='nome' class="form-control" type="text" placeholder="Insira o nome" value="{{leitor.nome}}" size="30" autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Endereço</p>
+                <input name='endereco' class="form-control" type="text" value="{{leitor.endereco}}" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Bairro</p>
+                <input name='bairro' class="form-control" value="{{leitor.bairro}}" type="text" size="20" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">DDD</p>
+                <input name='ddd' class="form-control" value="{{leitor.ddd}}" type="number" placeholder="(11)" size="3" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Telefone</p>
+                <input name='telefone' class="form-control" type="tel" value="{{leitor.telefone}}"  size="20" autocomplete="off"  placeholder="xxxxx-xxxx" required>
+            </li>
+            <li class="item-box-cadastro">
+                <input class="btn btn-primary" type="submit" value="Salvar">
+            </li>
+        </ul>
+    </form>
+</div>
+{% endblock %}

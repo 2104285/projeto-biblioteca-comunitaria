@@ -18,7 +18,7 @@
         </ul>
         <ul style="list-style-type:none" class="box-filtro-leitor">
             <a href="{% url 'leitor-geral' %}">
-                <li >
+                <li>
                     <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
                 </li>
             </a>
@@ -37,8 +37,6 @@
                 <th width="50">DDD</th>
                 <th width="150">Telefone</th>
                 <th width="60">Editar</th>
-                <th width="60">Ativar</th>
-                <th width="60">Inativar</th>
             </tr>
         </thead>
         <tbody>                         <!--criar o corpo da tabela-->
@@ -50,23 +48,24 @@
                 <td>{{ dados.bairro }}</td>
                 <td>{{ dados.ddd }}</td>
                 <td>{{ dados.telefone }}</td>
-                <td><button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
-                <td><button class="botao-icone">&#x2705</button></td>               <!--emoji flag verde-->
-                <td><button class="botao-icone">&#x1F6AB</button></td>               <!--emoji proibido-->
+                <td>
+                    <a href="{% url 'leitor-geral' %}/{{dados.leitor_id}}">
+                        <button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
+                    </a>
             </tr>
             {% endfor %}
             
         </tbody>
     </table>
     <br>
-    <div class="pagination">
-        <span class="step-links">
+    <div class="teste">
+        <span>
             {% if leitor.has_previous %}
                 <a href="?page=1&id={{id}}&nome={{nome}}&telefone={{telefone}}">&laquo; Primeira</a>
                 <a href="?page={{ leitor.previous_page_number }}&id={{id}}&nome={{nome}}&telefone={{telefone}}">Anterior</a>
             {% endif %}
     
-            <span class="current">
+            <span>
                 Página {{ leitor.number }} de {{ leitor.paginator.num_pages }}.
             </span>
     

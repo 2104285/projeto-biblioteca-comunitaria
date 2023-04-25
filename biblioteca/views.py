@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from biblioteca.models import TbLeitor
 
@@ -45,6 +45,21 @@ def cadastro_leitor(request):
         return render(request, 'biblioteca/wp32_novo-leitor.html')
     else:
         return render(request, 'biblioteca/wp32_novo-leitor.html')
+
+def update_leitor(request,id):
+    if request.method == "POST":
+        leitor = TbLeitor.objects.get(pk=id)
+        leitor.nome = request.POST["nome"]
+        leitor.endereco = request.POST["endereco"]
+        leitor.bairro = request.POST["bairro"]
+        leitor.ddd = request.POST["ddd"]
+        leitor.telefone = request.POST["telefone"]
+        leitor.save()
+        return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
+    else:
+        leitor = TbLeitor.objects.all()
+        leitor = get_object_or_404(leitor, pk=id)
+        return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
 
 def acervo_geral(request):
     return render(request, 'biblioteca/wp41_acervo-geral.html')
