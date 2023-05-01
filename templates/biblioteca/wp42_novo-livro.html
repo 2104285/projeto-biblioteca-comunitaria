@@ -15,13 +15,10 @@
         <li class="item-box-cadastro">
             <p class="label-cadastro">Categoria</p>
             <input class="form-control" type="text" placeholder="infantil/juvenil/adulto" size="25" autocomplete="off" required>
-        </li>
+        </li>                           <!--excluído o cadastro da "quantidade" do livro-->
+        <br>                            <!--criado quebra de linha para dar espaçamento adequando ao botão abaixo-->
         <li class="item-box-cadastro">
-            <p class="label-cadastro">Quantidade</p>
-            <input class="form-control" type="number" name="n" id="n" size="8" required>
-        </li>
-        <li class="item-box-cadastro">
-            <input class="btn btn-primary" type="submit" value="Salvar">
+            <input class="btn btn-primary" type="submit" value="Salvar" onclick="gravarnovolivro()"> <!--alerta-->
         </li>
     </ul>
 </div>

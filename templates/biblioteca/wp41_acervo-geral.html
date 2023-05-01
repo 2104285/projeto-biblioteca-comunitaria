@@ -31,8 +31,7 @@
                 <th width="250">Livro</th>
                 <th width="250">Autor</th>
                 <th width="100">Classificação</th>
-                <th width="50">Quantidade</th>
-                <th width="50">Disponíveis</th>
+                <th width="50">Disponível</th>         <!--excluído a coluna "quantidade"-->
                 <th width="60">Editar</th>
                 <th width="60">Excluir</th>
             </tr>
@@ -42,11 +41,10 @@
                 <td>1</td>
                 <td>1984</td>
                 <td>George Orwell</td>
-                <td>adulto</td>
-                <td>1</td>
-                <td>1</td>
-                <td><button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
-                <td><button class="botao-icone">&#x274C</button></td>               <!--emoji proibido-->
+                <td>Adulto</td>
+                <td>Sim</td>
+                <td><button class="botao-icone">&#x1F4DD</button></td>          <!--emoji &#x1F4DD editar-->
+                <td><button class="botao-icone" onclick="excluirlivrodoacervo()">&#x274C</button></td>     <!--confirmação-->
             </tr>
             <tr>
                 <td>2</td>
@@ -54,7 +52,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td> 
                 <td></td>
                 <td></td>
             </tr>
@@ -64,7 +61,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td> 
                 <td></td>
                 <td></td>
             </tr>    
@@ -74,7 +70,6 @@
                 <td></td>
                 <td></td>
                 <td></td> 
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>
