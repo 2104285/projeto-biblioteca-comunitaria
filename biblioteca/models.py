@@ -150,9 +150,11 @@ class TbLeitor(models.Model):
 
 class TbLivro(models.Model):
     livro_id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=255, blank=True, null=True)
+    tombo = models.IntegerField(unique=True, blank=True, null=True)
+    titulo = models.CharField(max_length=255, blank=True, null=True)
     autor = models.CharField(max_length=255, blank=True, null=True)
-    codigo = models.CharField(max_length=255, blank=True, null=True)
+    classificacao = models.CharField(max_length=255, blank=True, null=True)
+    na = models.IntegerField(db_column='NA', unique=True, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = True

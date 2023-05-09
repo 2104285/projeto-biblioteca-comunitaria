@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from biblioteca.models import TbLeitor
+from biblioteca.models import TbLeitor, TbLivro
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
@@ -62,7 +62,34 @@ def update_leitor(request,id):
         return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
 
 def acervo_geral(request):
-    return render(request, 'biblioteca/wp41_acervo-geral.html')
+    livro = TbLivro.objects.all()
+    #filtros
+    titulo = ""
+    autor = ""
+    classificacao = ""
+    tombo = ""
+    if "tombo" in request.GET:
+        tombo = request.GET['tombo']
+        if tombo:
+            livro = livro.filter(tombo__icontains=tombo)
+    if "titulo" in request.GET:
+        titulo = request.GET['titulo']
+        if titulo:
+            livro = livro.filter(titulo__icontains=titulo)
+    if "autor" in request.GET:
+        autor = request.GET['autor']
+        if autor:
+            livro = livro.filter(autor__icontains=autor)
+    if "classificacao" in request.GET:
+        classificacao = request.GET['classificacao']
+        if classificacao:
+            livro = livro.filter(classificacao__icontains=classificacao)
+    #paginação
+    paginator = Paginator(livro, 5)  # Show 5 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'biblioteca/wp41_acervo-geral.html',
+                  {"livro":page_obj,"tombo":tombo,"nome": titulo, "autor": autor,"classificacao": classificacao})
 
 def cadastro_acervo(request):
     return render(request, 'biblioteca/wp42_novo-livro.html')
