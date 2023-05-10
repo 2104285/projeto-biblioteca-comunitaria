@@ -41,6 +41,7 @@ def cadastro_leitor(request):
         cadastro.bairro = request.POST["bairro"]
         cadastro.ddd = request.POST["ddd"]
         cadastro.telefone = request.POST["telefone"]
+        cadastro.ativo = request.POST["ativo"]
         cadastro.save()
         return render(request, 'biblioteca/wp32_novo-leitor.html')
     else:
@@ -54,6 +55,7 @@ def update_leitor(request,id):
         leitor.bairro = request.POST["bairro"]
         leitor.ddd = request.POST["ddd"]
         leitor.telefone = request.POST["telefone"]
+        leitor.ativo = request.POST["ativo"]
         leitor.save()
         return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
     else:

@@ -36,6 +36,7 @@
                 <th width="150">Bairro</th>
                 <th width="50">DDD</th>
                 <th width="150">Telefone</th>
+                <th>Status</th>
                 <th width="60">Editar</th>
             </tr>
         </thead>
@@ -48,6 +49,7 @@
                 <td>{{ dados.bairro }}</td>
                 <td>{{ dados.ddd }}</td>
                 <td>{{ dados.telefone }}</td>
+                <td>{{ dados.ativo }}</td>
                 <td>
                     <a href="{% url 'leitor-geral' %}/{{dados.leitor_id}}">
                         <button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->

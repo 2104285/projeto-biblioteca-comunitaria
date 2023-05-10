@@ -211,6 +211,11 @@ h3{
     display: inline-block;
 }
 
+.form-select{
+    width: 300px;
+    display: inline-block;
+}
+
 .btn{
     width: 150px;
     margin-top: 20px;
