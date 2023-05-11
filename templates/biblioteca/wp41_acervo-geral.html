@@ -48,7 +48,11 @@
                 <td>{{livro.autor}}</td>
                 <td>{{livro.classificacao}}</td>
                 <td>{{livro.na}}</td>
-                <td><button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
+                <td>
+                    <a href="{% url 'acervo-geral' %}/{{livro.livro_id}}">
+                        <button class="botao-icone">&#x1F4DD</button>              <!--emoji &#x1F4DD editar-->
+                    </a>
+                </td>
             </tr>
             {%endfor%}
         </tbody>

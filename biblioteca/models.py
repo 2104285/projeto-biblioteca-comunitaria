@@ -123,12 +123,14 @@ class DjangoSession(models.Model):
 
 
 class TbEmprestimo(models.Model):
+    id = models.AutoField(primary_key=True)
     leitor = models.ForeignKey('TbLeitor', models.DO_NOTHING, blank=True, null=True)
     livro = models.ForeignKey('TbLivro', models.DO_NOTHING, blank=True, null=True)
     data_emprestimo = models.DateField(blank=True, null=True)
     obs_emprestimo = models.CharField(max_length=255, blank=True, null=True)
     data_devolucao = models.DateField(blank=True, null=True)
     obs_devolucao = models.CharField(max_length=255, blank=True, null=True)
+    data_devolucao_prevista = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = True

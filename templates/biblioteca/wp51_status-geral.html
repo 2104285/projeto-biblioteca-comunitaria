@@ -19,6 +19,12 @@
                 <p class="filter-label">Data Devolução</p>
                 <input class="form-control input-filtro" type="date">
             </li>
+            <li>
+                <select name='entrega' class="form-select"  style="width: 300px;" required>
+                    <option value="Ativo">Entregue</option>
+                    <option value="Desativo">Não Entregue</option>
+            </select>
+            </li>
         </ul>
         <ul style="list-style-type:none" class="box-filtro-leitor">
             <li >
@@ -43,26 +49,18 @@
             </tr>
         </thead>
         <tbody>                         <!--criar o corpo da tabela-->
+            {% for emprestimo in emprestimo %}
             <tr>
+                <td>{{ emprestimo.leitor.leitor_id }}</td>
+                <td>{{ emprestimo.leitor.nome }}</td>
+                <td>{{ emprestimo.livro.tombo }}</td>
+                <td>{{ emprestimo.livro.titulo }}</td>
+                <td>{{ emprestimo.data_emprestimo }}</td>
+                <td>{{ emprestimo.data_devolucao_prevista }}</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Atrasado</td>
                 <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Em dia</td>
-                <td><button class="botao-icone">&#x1F504</button></td>               <!--emoji gerar relatório-->
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

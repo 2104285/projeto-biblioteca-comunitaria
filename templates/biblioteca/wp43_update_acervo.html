@@ -8,23 +8,23 @@
         <ul style="list-style-type:none" class="box-cadastro">
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Tombo</p>
-                <input name="tombo" class="form-control" type="number" placeholder="Tombo" size="20" autocomplete="off" required>
+                <input name="tombo" value="{{livro.tombo}}" class="form-control" type="number" placeholder="Tombo" size="20" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Titulo</p>
-                <input name="titulo" class="form-control" type="text" placeholder="Titulo do livro" size="30" autocomplete="off" required>
+                <input name="titulo" value="{{livro.titulo}}" class="form-control" type="text" placeholder="Titulo do livro" size="30" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Autor</p>
-                <input name="autor" class="form-control" type="text" placeholder="nome do autor" size="30" autocomplete="off" required>
+                <input name="autor" value="{{livro.autor}}" class="form-control" type="text" placeholder="nome do autor" size="30" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Classificação</p>
-                <input name="classificacao" class="form-control" type="text" placeholder="infantil/juvenil/adulto" size="25" autocomplete="off" required>
+                <input name="classificacao" value="{{livro.classificacao}}" class="form-control" type="text" placeholder="infantil/juvenil/adulto" size="25" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">NA</p>
-                <input name="na" class="form-control" type="number"  id="n" size="20" required>
+                <input name="na" class="form-control" value="{{livro.na}}" type="number"  id="n" size="20" required>
             </li>
             <li class="item-box-cadastro">
                 <input class="btn btn-primary" type="submit" value="Salvar">

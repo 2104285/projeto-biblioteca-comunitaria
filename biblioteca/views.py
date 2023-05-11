@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from biblioteca.models import TbLeitor, TbLivro
+from biblioteca.models import TbLeitor, TbLivro, TbEmprestimo
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
@@ -94,10 +94,39 @@ def acervo_geral(request):
                   {"livro":page_obj,"tombo":tombo,"nome": titulo, "autor": autor,"classificacao": classificacao})
 
 def cadastro_acervo(request):
-    return render(request, 'biblioteca/wp42_novo-livro.html')
+    if request.method == "POST":
+        livro = TbLivro()
+        livro.tombo = request.POST["tombo"]
+        livro.titulo = request.POST["titulo"]
+        livro.autor = request.POST["autor"]
+        livro.classificacao = request.POST["classificacao"]
+        livro.na = request.POST["na"]
+        livro.save()
+        return render(request, 'biblioteca/wp42_novo-livro.html')
+    else:
+        return render(request, 'biblioteca/wp42_novo-livro.html')
+
+def update_acervo(request,id):
+    if request.method == "POST":
+        livro = TbLivro.objects.get(pk=id)
+        livro.tombo = request.POST["tombo"]
+        livro.titulo = request.POST["titulo"]
+        livro.autor = request.POST["autor"]
+        livro.classificacao = request.POST["classificacao"]
+        livro.na = request.POST["na"]
+        livro.save()
+        return render(request, 'biblioteca/wp43_update_acervo.html',{"livro":livro})
+    else:
+        livro = TbLivro.objects.all()
+        livro = get_object_or_404(livro, pk=id)
+        return render(request, 'biblioteca/wp43_update_acervo.html',{"livro":livro})
 
 def emprestimo(request):
-    return render(request, 'biblioteca/wp51_status-geral.html')
+    emprestimo = TbEmprestimo.objects.all()
+    paginator = Paginator(emprestimo, 5)  # Show 5 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'biblioteca/wp51_status-geral.html',{"emprestimo": page_obj})
 
 def cadastro_emprestimo(request):
     return render(request, 'biblioteca/wp52_novo-emprestimo.html')
