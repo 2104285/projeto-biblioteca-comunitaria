@@ -159,6 +159,20 @@ class TbLivro(models.Model):
     classificacao = models.CharField(max_length=255, blank=True, null=True)
     na = models.IntegerField(db_column='NA', unique=True, blank=True, null=True)  # Field name made lowercase.
 
+    @property
+    def status(self):
+        emprestimo = TbEmprestimo.objects.all().filter(livro__tombo = self.tombo)
+        emprestado = False
+        for livro in emprestimo:
+            if livro.data_devolucao == None:
+                emprestado = True
+        if emprestado:
+            return "Emprestado"
+        else:
+            return "Disponível"
+        
     class Meta:
         managed = True
         db_table = 'tb_livro'
+
+    

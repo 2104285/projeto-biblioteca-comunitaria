@@ -10,6 +10,7 @@ urlpatterns = [
     path('acervo-geral', acervo_geral, name='acervo-geral'),
     path('acervo-geral/<int:id>', update_acervo, name='acervo-geral'),
     path('cadastro-acervo/', cadastro_acervo, name='cadastro-acervo'),
-    path('emprestimo/', emprestimo, name='emprestimo'),
+    path('emprestimo', emprestimo, name='emprestimo'),
+    path('emprestimo/<int:id>', emprestimo_edit, name='emprestimo'),
     path('cadastro-emprestimo', cadastro_emprestimo, name='cadastro-emprestimo')
 ]

@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.core.paginator import Paginator
 from biblioteca.models import TbLeitor, TbLivro, TbEmprestimo
+import datetime as dt
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
@@ -122,11 +123,81 @@ def update_acervo(request,id):
         return render(request, 'biblioteca/wp43_update_acervo.html',{"livro":livro})
 
 def emprestimo(request):
+    if request.method == "POST" and "add_14_days" in request.POST:
+        emprestimo = TbEmprestimo.objects.get(pk = request.POST["id"])
+        emprestimo.data_devolucao_prevista = emprestimo.data_devolucao_prevista + dt.timedelta(14)
+        emprestimo.save()
     emprestimo = TbEmprestimo.objects.all()
+    leitor_id = ""
+    tombo = ""
+    data_emprestimo = ""
+    data_devolucao = ""
+    entrega = ""
+    if "leitor_id" in request.GET:
+        leitor_id = request.GET["leitor_id"]
+        if leitor_id != "":
+            emprestimo = emprestimo.filter(leitor__leitor_id__icontains=leitor_id)
+    if "tombo" in request.GET:
+        tombo = request.GET["tombo"]
+        if tombo != "":
+           emprestimo =  emprestimo.filter(livro__tombo__icontains=tombo)
+    if "data_emprestimo" in request.GET:
+        data_emprestimo = request.GET["data_emprestimo"]
+        if data_emprestimo != "":
+            emprestimo = emprestimo.filter(data_emprestimo__icontains=data_emprestimo)
+    if "data_devolucao" in request.GET:
+        data_devolucao = request.GET["data_devolucao"]
+        if data_devolucao != "":
+            emprestimo = emprestimo.filter(data_devolucao_prevista__icontains=data_devolucao)
+    if "entrega" in request.GET:
+        entrega = request.GET["entrega"]
+        if entrega == "Ativo":
+            emprestimo = emprestimo.exclude(data_devolucao=None)
+        elif entrega == "Desativo":
+            emprestimo = emprestimo.filter(data_devolucao=None).order_by("data_emprestimo")
+
     paginator = Paginator(emprestimo, 5)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'biblioteca/wp51_status-geral.html',{"emprestimo": page_obj})
+    return render(request, 'biblioteca/wp51_status-geral.html',
+                  {"emprestimo": page_obj,
+                   "leitor_id":leitor_id,
+                   "tombo": tombo,
+                   "data_emprestimo":data_emprestimo,
+                   "entrega":entrega} )
 
 def cadastro_emprestimo(request):
-    return render(request, 'biblioteca/wp52_novo-emprestimo.html')
+    if request.method == "POST":
+        emprestimo = TbEmprestimo()
+        leitor = TbLeitor(leitor_id = request.POST["leitor_id"])
+        emprestimo.leitor = leitor
+        livro = TbLivro.objects.get(tombo=request.POST["tombo"])
+        if livro.status == "Emprestado":
+            return HttpResponse("<p>Atenção! o livro já está emprestado!</p>")
+        else:
+            emprestimo.livro = livro
+            emprestimo.data_emprestimo = request.POST["data_emprestimo"]
+            emprestimo.data_devolucao_prevista = request.POST["data_devolucao_prevista"]
+            emprestimo.obs_emprestimo = request.POST["obs_emprestimo"]
+            emprestimo.save()
+            return render(request, 'biblioteca/wp52_novo-emprestimo.html')
+    else:
+        return render(request, 'biblioteca/wp52_novo-emprestimo.html')
+    
+def emprestimo_edit(request,id):
+    if request.method == "POST":
+        emprestimo = TbEmprestimo.objects.all()
+        emprestimo = get_object_or_404(emprestimo,pk=id)
+        emprestimo.data_devolucao_prevista = request.POST["data_devolucao_prevista"]
+        if request.POST["data_devolucao"] != "":
+            emprestimo.data_devolucao = request.POST["data_devolucao"]
+        else:
+            emprestimo.data_devolucao = None
+        emprestimo.obs_devolucao = request.POST["obs_devolucao"]
+        emprestimo.save()
+        emprestimo = TbEmprestimo.objects.all()
+        emprestimo = get_object_or_404(emprestimo,pk=id)
+        return render(request, 'biblioteca/wp52_edit-emprestimo.html', {"emprestimo":emprestimo})
+    else:
+        emprestimo = TbEmprestimo.objects.get(pk = id)
+        return render(request, 'biblioteca/wp52_edit-emprestimo.html', {"emprestimo":emprestimo})

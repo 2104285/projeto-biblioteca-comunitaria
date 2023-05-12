@@ -37,6 +37,7 @@
                 <th width="250">Autor</th>
                 <th width="100">Classificação</th>
                 <th width="50">NA</th>
+                <th>Status</th>
                 <th width="60">Editar</th>
             </tr>
         </thead>
@@ -48,6 +49,7 @@
                 <td>{{livro.autor}}</td>
                 <td>{{livro.classificacao}}</td>
                 <td>{{livro.na}}</td>
+                <td>{{ livro.status }}</td>
                 <td>
                     <a href="{% url 'acervo-geral' %}/{{livro.livro_id}}">
                         <button class="botao-icone">&#x1F4DD</button>              <!--emoji &#x1F4DD editar-->
