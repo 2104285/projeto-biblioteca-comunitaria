@@ -30,7 +30,9 @@
         </ul>
         <ul style="list-style-type:none" class="box-filtro-leitor">
             <li >
-                <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                <a href="{% url 'emprestimo' %}">
+                    <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                </a>
             </li>
             <li>
                 <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
@@ -45,7 +47,7 @@
                 <th width="10">Tombo</th>
                 <th width="200">Livro</th>
                 <th width="160">Data Empréstimo</th>
-                <th width="140">Data Devolução Prevista</th>
+                <th width="140">Data Devolução</th>
                 <th width="10">Status</th>
                 <th width="10">Editar</th>
                 <th width="10">Renovar +14 dias</th>
@@ -59,7 +61,7 @@
                 <td>{{ emprestimo.livro.tombo }}</td>
                 <td>{{ emprestimo.livro.titulo }}</td>
                 <td>{{ emprestimo.data_emprestimo }}</td>
-                <td>{{ emprestimo.data_devolucao_prevista }}</td>
+                <td>{{ emprestimo.data_devolucao }}</td>
                 <td>
                     {% if emprestimo.data_devolucao == None %}
                     Não Entregue

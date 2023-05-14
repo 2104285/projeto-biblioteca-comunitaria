@@ -7,7 +7,12 @@ def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
 def inicio(request):
-    return render(request,'biblioteca/wp2_inicio.html')
+    qty_livro = TbLivro.objects.all().count()
+    qty_emprestado = TbEmprestimo.objects.all().filter(data_devolucao = None).count()
+    #qty_livro_emprestado = TbLivro.objects.all().filter(status="Emprestado").count()
+    return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro, 
+                                                        "qty_emprestado": qty_emprestado,
+                                                        "qty_livro_emprestado": None})
 
 def leitor_geral(request):
     leitor = TbLeitor.objects.all()
@@ -148,7 +153,7 @@ def emprestimo(request):
     if "data_devolucao" in request.GET:
         data_devolucao = request.GET["data_devolucao"]
         if data_devolucao != "":
-            emprestimo = emprestimo.filter(data_devolucao_prevista__icontains=data_devolucao)
+            emprestimo = emprestimo.filter(data_devolucao__icontains=data_devolucao)
     if "entrega" in request.GET:
         entrega = request.GET["entrega"]
         if entrega == "Ativo":
