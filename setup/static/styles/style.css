@@ -211,6 +211,11 @@ h3{
     display: inline-block;
 }
 
+.form-select{
+    width: 300px;
+    display: inline-block;
+}
+
 .btn{
     width: 150px;
     margin-top: 20px;
@@ -229,7 +234,7 @@ h3{
 }
 
 .input-filtro{
-    width: 200px;
+    width: 150px;
     margin-bottom: 10px;
     margin-right: 10px;
 }

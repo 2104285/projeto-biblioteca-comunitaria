@@ -1,0 +1,48 @@
+{% extends 'biblioteca/base.html' %}
+{% block title%}Cadastro Emprestimo{% endblock %}
+{% block content %}
+<form method="post" class="box">
+    {% csrf_token %}
+    <h3 class="titulo_leitor">Novo Empréstimo</h3>   <!--título tabela-->
+    <ul style="list-style-type:none" class="box-cadastro">
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">ID Leitor</p>
+            <input name="leitor_id" value="{{emprestimo.leitor.leitor_id}}" class="form-control" type="number" size="4" autocomplete="off" disabled>
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Nome</p>
+            <input value="{{emprestimo.leitor.nome}}" class="form-control" size="50" autocomplete="off" disabled>
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Tombo</p>
+            <input name="tombo" value="{{emprestimo.livro.tombo}}" class="form-control" type="number" size="4" autocomplete="off" disabled>
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Data Emprestimo</p>
+            <input name="data_emprestimo" value="{{emprestimo.data_emprestimo|date:'Y-m-d' }}" class="form-control" type="date" size="5" disabled>
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Prazo Devolução Previsto</p>
+            <input name="data_devolucao_prevista" value="{{emprestimo.data_devolucao_prevista|date:'Y-m-d'}}" class="form-control" type="date" size="5">
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Observação emprestimo</p>
+            <textarea name="obs_emprestimo" class="form-control" style="width: 70%;" disabled>{{emprestimo.obs_emprestimo}}</textarea>
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Data de Devolução Realizado</p>
+            <input name="data_devolucao" value="{{emprestimo.data_devolucao|date:'Y-m-d'}}" class="form-control" type="date" size="5">
+        </li>
+        <li class="item-box-cadastro">
+            <p class="label-cadastro">Observação emprestimo</p>
+            <textarea name="obs_devolucao" value="{{emprestimo.obs_devolucao}}" class="form-control" style="width: 70%;" >{{emprestimo.obs_devolucao}}</textarea>
+        </li>
+        <li class="item-box-cadastro">
+            <input class="btn btn-primary" type="submit" value="Salvar">
+        </li>
+        
+    </ul> 
+</form>
+<br>
+
+{% endblock %}

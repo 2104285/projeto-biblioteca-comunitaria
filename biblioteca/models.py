@@ -123,12 +123,14 @@ class DjangoSession(models.Model):
 
 
 class TbEmprestimo(models.Model):
+    id = models.AutoField(primary_key=True)
     leitor = models.ForeignKey('TbLeitor', models.DO_NOTHING, blank=True, null=True)
     livro = models.ForeignKey('TbLivro', models.DO_NOTHING, blank=True, null=True)
     data_emprestimo = models.DateField(blank=True, null=True)
     obs_emprestimo = models.CharField(max_length=255, blank=True, null=True)
     data_devolucao = models.DateField(blank=True, null=True)
     obs_devolucao = models.CharField(max_length=255, blank=True, null=True)
+    data_devolucao_prevista = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -142,6 +144,7 @@ class TbLeitor(models.Model):
     ddd = models.CharField(max_length=2, blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
     bairro = models.CharField(max_length=45, blank=True, null=True)
+    ativo = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -150,10 +153,26 @@ class TbLeitor(models.Model):
 
 class TbLivro(models.Model):
     livro_id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=255, blank=True, null=True)
+    tombo = models.IntegerField(unique=True, blank=True, null=True)
+    titulo = models.CharField(max_length=255, blank=True, null=True)
     autor = models.CharField(max_length=255, blank=True, null=True)
-    codigo = models.CharField(max_length=255, blank=True, null=True)
+    classificacao = models.CharField(max_length=255, blank=True, null=True)
+    na = models.IntegerField(db_column='NA', unique=True, blank=True, null=True)  # Field name made lowercase.
 
+    @property
+    def status(self):
+        emprestimo = TbEmprestimo.objects.all().filter(livro__tombo = self.tombo)
+        emprestado = False
+        for livro in emprestimo:
+            if livro.data_devolucao == None:
+                emprestado = True
+        if emprestado:
+            return "Emprestado"
+        else:
+            return "Disponível"
+        
     class Meta:
         managed = True
         db_table = 'tb_livro'
+
+    

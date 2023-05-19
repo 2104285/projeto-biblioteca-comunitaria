@@ -27,7 +27,7 @@
             </li>
         </ul>
     </form>
-    <table class="table table-striped table-bordered table-condensed table-hover">                  <!--criar tabela-->
+    <table class="table table-striped table-bordered table-condensed table-hover">
         <thead>                         <!--cabeça da tabela-->
             <tr>                        <!--criar o nome das colunas-->
                 <th width="50">ID_leitor</th>
@@ -36,6 +36,7 @@
                 <th width="150">Bairro</th>
                 <th width="50">DDD</th>
                 <th width="150">Telefone</th>
+                <th>Status</th>
                 <th width="60">Editar</th>
             </tr>
         </thead>
@@ -44,14 +45,16 @@
             <tr>
                 <td>{{dados.leitor_id}}</td>
                 <td>{{ dados.nome }}</td>
-                <td>{{ dados.endereco }}</td>>
+                <td>{{ dados.endereco }}</td>
                 <td>{{ dados.bairro }}</td>
                 <td>{{ dados.ddd }}</td>
                 <td>{{ dados.telefone }}</td>
+                <td>{{ dados.ativo }}</td>
                 <td>
                     <a href="{% url 'leitor-geral' %}/{{dados.leitor_id}}">
-                        <button class="botao-icone">&#x1F4DD</button></td>              <!--emoji &#x1F4DD editar-->
+                        <button class="botao-icone">&#x1F4DD</button>             <!--emoji &#x1F4DD editar-->
                     </a>
+                </td>
             </tr>
             {% endfor %}
             
