@@ -176,7 +176,10 @@ def cadastro_emprestimo(request):
         emprestimo = TbEmprestimo()
         leitor = TbLeitor(leitor_id = request.POST["leitor_id"])
         emprestimo.leitor = leitor
-        livro = TbLivro.objects.get(tombo=request.POST["tombo"])
+        try:
+            livro = TbLivro.objects.get(tombo=int(request.POST["tombo"]))
+        except:
+            return HttpResponse("<p>Atenção! O tombo do livro não foi registrado!</p>")
         if livro.status == "Emprestado":
             return HttpResponse("<p>Atenção! o livro já está emprestado!</p>")
         else:
@@ -187,9 +190,11 @@ def cadastro_emprestimo(request):
             emprestimo.save()
             return render(request, 'biblioteca/wp52_novo-emprestimo.html')
     else:
-        return render(request, 'biblioteca/wp52_novo-emprestimo.html')
+        leitor = TbLeitor.objects.all().order_by("nome")
+        return render(request, 'biblioteca/wp52_novo-emprestimo.html',{"leitor":leitor})
     
 def emprestimo_edit(request,id):
+    
     if request.method == "POST":
         emprestimo = TbEmprestimo.objects.all()
         emprestimo = get_object_or_404(emprestimo,pk=id)

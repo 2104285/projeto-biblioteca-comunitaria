@@ -6,8 +6,13 @@
     <h3 class="titulo_leitor">Novo Empréstimo</h3>   <!--título tabela-->
     <ul style="list-style-type:none" class="box-cadastro">
         <li class="item-box-cadastro">
-            <p class="label-cadastro">ID Leitor</p>
-            <input name="leitor_id" class="form-control" type="number" size="4" autocomplete="off">
+            <p class="label-cadastro">Nome do leitor</p>
+            <select name="leitor_id" class="form-select">
+                <option value=""></option>
+                {% for leitor in leitor %}
+                <option value="{{leitor.leitor_id}}">{{leitor.nome}}</option>
+                {% endfor %}
+            </select>
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Tombo</p>
@@ -18,7 +23,7 @@
             <input name="data_emprestimo" class="form-control" type="date" size="5">
         </li>
         <li class="item-box-cadastro">
-            <p class="label-cadastro">Prazo Devolução</p>
+            <p class="label-cadastro">Prazo Devolução Prevista</p>
             <input name="data_devolucao_prevista" class="form-control" type="date" size="5">
         </li>
         <li class="item-box-cadastro">

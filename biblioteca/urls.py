@@ -2,7 +2,7 @@ from django.urls import path
 from biblioteca.views import *
 
 urlpatterns = [
-    path('', index),
+    path('', inicio),
     path('inicio', inicio, name="inicio"),
     path('leitor-geral', leitor_geral, name='leitor-geral'),
     path('leitor-geral/<int:id>', update_leitor, name='leitor-geral'),
