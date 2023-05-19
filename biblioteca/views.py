@@ -191,7 +191,8 @@ def cadastro_emprestimo(request):
             return render(request, 'biblioteca/wp52_novo-emprestimo.html')
     else:
         leitor = TbLeitor.objects.all().order_by("nome")
-        return render(request, 'biblioteca/wp52_novo-emprestimo.html',{"leitor":leitor})
+        livro = TbLivro.objects.all().order_by("titulo")
+        return render(request, 'biblioteca/wp52_novo-emprestimo.html',{"leitor":leitor, "livro":livro})
     
 def emprestimo_edit(request,id):
     

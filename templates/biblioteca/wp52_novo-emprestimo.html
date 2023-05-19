@@ -15,8 +15,13 @@
             </select>
         </li>
         <li class="item-box-cadastro">
-            <p class="label-cadastro">Tombo</p>
-            <input name="tombo" class="form-control" type="number" size="4" autocomplete="off">
+            <p class="label-cadastro">Titulo / tombo</p>
+            <select name="tombo" class="form-select">
+                <option value=""></option>
+                {% for livro in livro %}
+                <option value="{{livro.tombo}}">{{livro.titulo}} / tombo: {{livro.tombo}}</option>
+                {% endfor %}
+            </select>
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Data Emprestimo</p>
