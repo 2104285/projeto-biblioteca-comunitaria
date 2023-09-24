@@ -43,8 +43,12 @@ def cadastro_leitor(request):
     if request.method == "POST":
         cadastro = TbLeitor()
         cadastro.nome = request.POST["nome"]
+        cadastro.cep = request.POST["cep"]
         cadastro.endereco = request.POST["endereco"]
+        cadastro.numero = request.POST["numero"]
         cadastro.bairro = request.POST["bairro"]
+        cadastro.cidade = request.POST["cidade"]
+        cadastro.estado = request.POST["uf"]
         cadastro.ddd = request.POST["ddd"]
         cadastro.telefone = request.POST["telefone"]
         cadastro.ativo = request.POST["ativo"]

@@ -140,10 +140,14 @@ class TbEmprestimo(models.Model):
 class TbLeitor(models.Model):
     leitor_id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255, blank=True, null=True)
-    telefone = models.CharField(max_length=9, blank=True, null=True)
-    ddd = models.CharField(max_length=2, blank=True, null=True)
+    cep = models.CharField(max_length=9, blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
+    numero = models.CharField(max_length=6, blank=True, null=True)
     bairro = models.CharField(max_length=45, blank=True, null=True)
+    cidade = models.CharField(max_length=45, blank=True, null=True)
+    estado = models.CharField(max_length=45, blank=True, null=True)
+    ddd = models.CharField(max_length=2, blank=True, null=True)
+    telefone = models.CharField(max_length=9, blank=True, null=True)
     ativo = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:

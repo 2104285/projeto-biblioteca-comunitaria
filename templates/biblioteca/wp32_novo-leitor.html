@@ -1,7 +1,10 @@
 {% extends 'biblioteca/base.html' %}
 {% block title %}Novo Leitor{% endblock %}
-{% block content %}
+{% block content %}   
+{% load static %} 
 
+<script type="text/javascript" src="{% static 'js/CEP.js' %}"> 
+</script>
 <div class="box">
     <h3 class="titulo_leitor">Cadastrar Novo Leitor</h3>   <!--título tabela-->
     <form method="post">
@@ -12,12 +15,28 @@
                 <input name='nome' class="form-control" type="text" placeholder="Insira o nome" size="30" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
+                <p class="label-cadastro">CEP</p>
+                <input name='cep' id='cep' class="form-control" type="number" placeholder="somente os 8 n°s" autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
                 <p class="label-cadastro">Endereço</p>
-                <input name='endereco' class="form-control" type="text" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
+                <input name='endereco' id='logradouro' class="form-control" type="text" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">N°</p>
+                <input name='numero' id='numero' class="form-control" type="number" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Bairro</p>
-                <input name='bairro' class="form-control" type="text" size="20" required>
+                <input name='bairro' id='bairro' class="form-control" type="text" size="20" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Cidade</p>
+                <input name='cidade' id='localidade' class="form-control" type="text" size="20" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Estado</p>
+                <input name='uf' id='uf' class="form-control" type="text" size="20" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">DDD</p>
@@ -40,4 +59,5 @@
         </ul>
     </form>
 </div>
+
 {% endblock %}
