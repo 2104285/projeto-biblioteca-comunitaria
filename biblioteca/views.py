@@ -15,7 +15,7 @@ def inicio(request):
                                                         "qty_livro_emprestado": None})
 
 def leitor_geral(request):
-    leitor = TbLeitor.objects.all()
+    leitor = TbLeitor.objects.filter(visivel = True).all()
     #filtros
     id = ""
     telefone = ""
@@ -72,6 +72,12 @@ def update_leitor(request,id):
         leitor = TbLeitor.objects.all()
         leitor = get_object_or_404(leitor, pk=id)
         return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
+    
+def remove_visility_leitor(request,id):
+    leitor = TbLeitor.objects.filter(leitor_id=id).get()
+    leitor.visivel = False
+    leitor.save()
+    return leitor_geral(request)
 
 def acervo_geral(request):
     livro = TbLivro.objects.all()

@@ -149,6 +149,7 @@ class TbLeitor(models.Model):
     ddd = models.CharField(max_length=2, blank=True, null=True)
     telefone = models.CharField(max_length=9, blank=True, null=True)
     ativo = models.CharField(max_length=45, blank=True, null=True)
+    visivel = models.BooleanField(default=True)
 
     class Meta:
         managed = True
