@@ -61,8 +61,12 @@ def update_leitor(request,id):
     if request.method == "POST":
         leitor = TbLeitor.objects.get(pk=id)
         leitor.nome = request.POST["nome"]
+        leitor.cep = request.POST["cep"]
         leitor.endereco = request.POST["endereco"]
+        leitor.numero = request.POST["numero"]
         leitor.bairro = request.POST["bairro"]
+        leitor.cidade = request.POST["cidade"]
+        leitor.estado = request.POST["uf"]
         leitor.ddd = request.POST["ddd"]
         leitor.telefone = request.POST["telefone"]
         leitor.ativo = request.POST["ativo"]

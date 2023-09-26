@@ -1,5 +1,10 @@
 //'use restrict'; //modo estrito - aumenta o rigor do código, deixando mais seguro e consistente 
 window.onload = function () {
+    var url = window.location.href
+    if (url.includes("delete")){
+        window.location.replace("http://127.0.0.1:8000/leitor-geral")
+    }
+
     const limpaform = (endereco) =>{        //variavel limpa formulario se cep for incorreto
         document.getElementById('logradouro').value = '';  //zera o preenchimento dos campos
         document.getElementById('bairro').value = '';

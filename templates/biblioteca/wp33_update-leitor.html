@@ -1,7 +1,10 @@
 {% extends 'biblioteca/base.html' %}
 {% block title %}Novo Leitor{% endblock %}
 {% block content %}
+{% load static %} 
 
+<script type="text/javascript" src="{% static 'js/CEP.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/DeleteUser.js' %}"></script>
 <div class="box">
     <h3 class="titulo_leitor">Atualizar Leitor</h3>   <!--título tabela-->
     <form method="post">
@@ -9,19 +12,35 @@
         <ul style="list-style-type:none" class="box-cadastro">
             <li class="item-box-cadastro">
                 <p class="label-cadastro">ID</p>
-                <input name='id' class="form-control" type="text" value="{{leitor.leitor_id}}" disabled>
+                <input name='id' id="id" class="form-control" type="text" value="{{leitor.leitor_id}}" disabled>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Nome</p>
                 <input name='nome' class="form-control" type="text" placeholder="Insira o nome" value="{{leitor.nome}}" size="30" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
+                <p class="label-cadastro">CEP</p>
+                <input name='cep' id='cep' class="form-control" type="number" value="{{leitor.cep}}" placeholder="somente os 8 n°s" autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
                 <p class="label-cadastro">Endereço</p>
-                <input name='endereco' class="form-control" type="text" value="{{leitor.endereco}}" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
+                <input name='endereco' id='logradouro' class="form-control" type="text" value="{{leitor.endereco}}" placeholder="Rua/Av/Trav/..." autocomplete="off" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">N°</p>
+                <input name='numero' id='numero' class="form-control" value="{{leitor.numero}}" type="number" autocomplete="off" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Bairro</p>
-                <input name='bairro' class="form-control" value="{{leitor.bairro}}" type="text" size="20" required>
+                <input name='bairro' id='bairro' class="form-control" value="{{leitor.bairro}}" type="text" size="20" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Cidade</p>
+                <input name='cidade' id='localidade' value="{{leitor.cidade}}" class="form-control" type="text" size="20" required>
+            </li>
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">Estado</p>
+                <input name='uf' id='uf' class="form-control"  value="{{leitor.estado}}" type="text" size="20" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">DDD</p>
@@ -34,7 +53,7 @@
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Status</p>
                 <select name='ativo' class="form-select"  style="width: 300px;" required>
-                        <option value="{{leitor.ativo}}" selected disabled hidden>{{leitor.ativo}}</option>
+                        <option value="{{leitor.ativo}}" selected>{{leitor.ativo}}</option>
                         <option value="Ativo">Ativo</option>
                         <option value="Desativo">Desativo</option>
                 </select>
@@ -44,5 +63,6 @@
             </li>
         </ul>
     </form>
+    <button onclick="confirmDelete()">Delete Item</button>
 </div>
 {% endblock %}
