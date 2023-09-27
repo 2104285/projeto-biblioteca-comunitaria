@@ -1,10 +1,5 @@
 //'use restrict'; //modo estrito - aumenta o rigor do código, deixando mais seguro e consistente 
 window.onload = function () {
-    var url = window.location.href
-    if (url.includes("delete")){
-        window.location.replace("http://127.0.0.1:8000/leitor-geral")
-    }
-
     const limpaform = (endereco) =>{        //variavel limpa formulario se cep for incorreto
         document.getElementById('logradouro').value = '';  //zera o preenchimento dos campos
         document.getElementById('bairro').value = '';
@@ -22,20 +17,22 @@ window.onload = function () {
     const pesquisarCep = async() => {
         const cep = document.getElementById('cep').value;   //variavel pega o valor preenchido no campo cep
         const url = `https://viacep.com.br/ws/${cep}/json/`;
+        if(cep.length >= 8){
 
-        const dados = await fetch(url);      //variavel aguarda o retorno da url
-        const endereco = await dados.json(); //variavel aguarda o arquivo json com todas informações
+            const dados = await fetch(url);      //variavel aguarda o retorno da url
+            const endereco = await dados.json(); //variavel aguarda o arquivo json com todas informações
 
-        if (endereco.hasOwnProperty('erro')) {   //se o cep informado der erro na api
-                alert("CEP não encontrado");         //retorna o alerta para o usuário
-                limpaform(endereco);
-        }
+            if (endereco.hasOwnProperty('erro')) {   //se o cep informado der erro na api
+                    alert("CEP não encontrado");         //retorna o alerta para o usuário
+                    limpaform(endereco);
+            }
 
-        else{       //senao prossegue normal o preenchimnento
-                preencherform(endereco);
-        } 
+            else{       //senao prossegue normal o preenchimnento
+                    preencherform(endereco);
+            } 
+        }   
     }
 
     document.getElementById('cep')      //pegue o elemento do id "cep"
-            .addEventListener('focusout', pesquisarCep); //quando sair do foco pesquiseCep
+            .addEventListener('input', pesquisarCep); //quando sair do foco pesquiseCep
 }

@@ -20,7 +20,7 @@
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">CEP</p>
-                <input name='cep' id='cep' class="form-control" type="number" value="{{leitor.cep}}" placeholder="somente os 8 n°s" autocomplete="off" required>
+                <input name='cep' id='cep' class="form-control" type="number" value="{{leitor.cep}}" placeholder="somente os 8 n°s" autocomplete="off" size="8" required>
             </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Endereço</p>
@@ -63,6 +63,18 @@
             </li>
         </ul>
     </form>
-    <button onclick="confirmDelete()">Delete Item</button>
+    <div id="deleteuser">
+        <p>Tem certeza que deseja apagar o usuário ?</p>
+        <button onclick="closeFormExclude()"class="btn btn-secondary">Cancelar</button>
+        <button onclick="confirmDelete()" class="btn btn-danger" style="margin-left: 120px;">Delete Item</button>
+    </div>
+    <div>
+        <ul style="list-style-type:none" class="box-cadastro">
+            <li class="item-box-cadastro">
+                <button onclick="openFormExclude()" class="btn btn-danger" >Delete Item</button>
+            </li>
+        </ul>
+    </div> 
 </div>
+
 {% endblock %}
