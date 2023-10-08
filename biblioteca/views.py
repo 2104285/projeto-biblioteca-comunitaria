@@ -2,17 +2,22 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.core.paginator import Paginator
 from biblioteca.models import TbLeitor, TbLivro, TbEmprestimo
 import datetime as dt
+from django.shortcuts import render
+from reportlab.pdfgen import canvas
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
 def inicio(request):
-    qty_livro = TbLivro.objects.all().count()
+    qty_livro = TbLivro.objects.all()
     qty_emprestado = TbEmprestimo.objects.all().filter(data_devolucao = None).count()
-    #qty_livro_emprestado = TbLivro.objects.all().filter(status="Emprestado").count()
-    return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro, 
+    qty_livro_disponivel_number = 0
+    for livro in qty_livro:
+        if livro.status == "Disponível":
+            qty_livro_disponivel_number += 1
+    return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro.count(), 
                                                         "qty_emprestado": qty_emprestado,
-                                                        "qty_livro_emprestado": None})
+                                                        "qty_livro_emprestado": qty_livro_disponivel_number})
 
 def leitor_geral(request):
     leitor = TbLeitor.objects.filter(visivel = True).all()
@@ -33,11 +38,57 @@ def leitor_geral(request):
         if telefone:
             leitor = leitor.filter(telefone__icontains=str(telefone))
     #paginação
-    paginator = Paginator(leitor, 5)  # Show 5 contacts per page.
+    paginator = Paginator(leitor, 100)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request,'biblioteca/wp31_leitor-geral.html',
                   {"leitor": page_obj, "id":id,"nome":nome,"telefone":telefone})
+
+def generate_pdf_leitor(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="leitor.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Define the width and height of each row in the table
+    row_height = 20
+    column_width = 80
+
+    # Define the data to be printed in the table
+    data = [
+        ['ID','Name', 'telefone','Bairro'],
+    ]
+    for obj in TbLeitor.objects.all().filter(visivel=True).order_by('nome'):
+        data.append([obj.leitor_id, obj.nome, obj.telefone, obj.bairro])
+
+    # Draw the table
+    x = 50
+    y = 800
+    for row in data:
+        item_num = 1
+        for item in row:
+            if item_num == 1:
+                column_width = 50
+            elif item_num == 2:
+                column_width = 200
+            else:
+                column_width = 80
+            p.drawString(x, y, str(item)[0:30])
+            item_num += 1
+            x += column_width
+        x = 50
+        y -= row_height
+        if y <= 50: # add another page
+            y = 750
+            p.showPage()
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    return response
+
 
 def cadastro_leitor(request):
     if request.method == "POST":
@@ -107,11 +158,56 @@ def acervo_geral(request):
         if classificacao:
             livro = livro.filter(classificacao__icontains=classificacao)
     #paginação
-    paginator = Paginator(livro, 5)  # Show 5 contacts per page.
+    paginator = Paginator(livro, 100)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, 'biblioteca/wp41_acervo-geral.html',
                   {"livro":page_obj,"tombo":tombo,"nome": titulo, "autor": autor,"classificacao": classificacao})
+
+def generate_pdf_acervo(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="livros.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Define the width and height of each row in the table
+    row_height = 20
+    column_width = 80
+
+    # Define the data to be printed in the table
+    data = [
+        ['Tombo', 'Titulo','Autor','Classificação'],
+    ]
+    for obj in TbLivro.objects.all().order_by('titulo'):
+        data.append([obj.tombo, obj.titulo, obj.autor, obj.classificacao])
+
+    # Draw the table
+    x = 50
+    y = 800
+    for row in data:
+        item_num = 1
+        for item in row:
+            if item_num == 1:
+                column_width = 50
+            elif item_num == 2:
+                column_width = 200
+            else:
+                column_width = 200
+            p.drawString(x, y, str(item)[0:30])
+            item_num += 1
+            x += column_width
+        x = 50
+        y -= row_height
+        if y <= 50: # add another page
+            y = 750
+            p.showPage()
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    return response
 
 def cadastro_acervo(request):
     if request.method == "POST":
@@ -170,12 +266,16 @@ def emprestimo(request):
             emprestimo = emprestimo.filter(data_devolucao__icontains=data_devolucao)
     if "entrega" in request.GET:
         entrega = request.GET["entrega"]
-        if entrega == "Ativo":
-            emprestimo = emprestimo.exclude(data_devolucao=None)
-        elif entrega == "Desativo":
-            emprestimo = emprestimo.filter(data_devolucao=None).order_by("data_emprestimo")
+        if entrega != "":
+            for x in emprestimo:
+                if x.status != entrega:
+                    emprestimo = emprestimo.exclude(id=x.id)
+        #if entrega == "Ativo":
+        #    emprestimo = emprestimo.exclude(data_devolucao=None)
+        #elif entrega == "Desativo":
+        #    emprestimo = emprestimo.filter(data_devolucao=None).order_by("data_emprestimo")
 
-    paginator = Paginator(emprestimo, 5)  # Show 5 contacts per page.
+    paginator = Paginator(emprestimo, 100)  # Show 5 contacts per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, 'biblioteca/wp51_status-geral.html',

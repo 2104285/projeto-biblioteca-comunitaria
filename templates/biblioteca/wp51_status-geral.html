@@ -23,8 +23,9 @@
                 <p class="filter-label">Status</p>
                 <select name='entrega' class="form-select input-filtro">
                     <option value=""></option>                    
-                    <option value="Ativo">Entregue</option>
-                    <option value="Desativo">Não Entregue</option>
+                    <option value="Entregue">Entregue</option>
+                    <option value="Não Entregue">Não Entregue</option>
+                    <option value="Atrasado">Atrasado</option>
             </select>
             </li>
         </ul>
@@ -64,13 +65,7 @@
                 <td>{{ emprestimo.data_emprestimo }}</td>
                 <td>{{ emprestimo.leitor.endereco}}</td>
                 <td>{{emprestimo.leitor.bairro}}</td>
-                <td>
-                    {% if emprestimo.data_devolucao == None %}
-                    Não Entregue
-                    {% else %}
-                    Entregue
-                    {% endif %}
-                </td>
+                <td>{{ emprestimo.status }}</td>
                 <td>
                     <a href="{% url 'emprestimo' %}/{{emprestimo.id}}">
                         <button class="botao-icone">&#x1F4DD</button>             <!--emoji &#x1F4DD editar-->
