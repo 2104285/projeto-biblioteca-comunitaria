@@ -9,18 +9,13 @@ def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
 def inicio(request):
-    qty_livro = TbLivro.objects.all()
+    qty_livro = TbLivro.objects.filter(visivel=True)
     qty_emprestado = TbEmprestimo.objects.all().filter(data_devolucao = None).count()
-    qty_livro_disponivel_number = 0
-    for livro in qty_livro:
-        if livro.status == "Disponível":
-            qty_livro_disponivel_number += 1
     return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro.count(), 
-                                                        "qty_emprestado": qty_emprestado,
-                                                        "qty_livro_emprestado": qty_livro_disponivel_number})
+                                                        "qty_emprestado": qty_emprestado})
 
 def leitor_geral(request):
-    leitor = TbLeitor.objects.filter(visivel = True).all()
+    leitor = TbLeitor.objects.filter(visivel = True)
     #filtros
     id = ""
     telefone = ""
@@ -135,7 +130,7 @@ def remove_visility_leitor(request,id):
     return leitor_geral(request)
 
 def acervo_geral(request):
-    livro = TbLivro.objects.all()
+    livro = TbLivro.objects.filter(visivel=True)
     #filtros
     titulo = ""
     autor = ""
@@ -236,6 +231,12 @@ def update_acervo(request,id):
         livro = TbLivro.objects.all()
         livro = get_object_or_404(livro, pk=id)
         return render(request, 'biblioteca/wp43_update_acervo.html',{"livro":livro})
+
+def remove_visility_acervo(request,id):
+    leitor = TbLivro.objects.get(pk=id)
+    leitor.visivel = False
+    leitor.save()
+    return inicio(request)
 
 def emprestimo(request):
     if request.method == "POST" and "add_14_days" in request.POST:

@@ -1,11 +1,18 @@
 {% extends 'biblioteca/base.html' %}
 {% block title %}Cadastro Acervo{% endblock %}
 {% block content %}
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/DeleteLivro.js' %}"></script>
 <div class="box">
     <h3 class="titulo_leitor">Cadastrar Novo Livro</h3>   <!--título tabela-->
     <form method="post">
         {% csrf_token %}
         <ul style="list-style-type:none" class="box-cadastro">
+            <li class="item-box-cadastro">
+                <p class="label-cadastro">ID</p>
+                <input name='id' id="id" class="form-control" type="text" value="{{livro.livro_id}}" disabled>
+            </li>
             <li class="item-box-cadastro">
                 <p class="label-cadastro">Tombo</p>
                 <input name="tombo" value="{{livro.tombo}}" class="form-control" type="number" placeholder="Tombo" size="20" autocomplete="off" required>
@@ -31,5 +38,18 @@
             </li>
         </ul>
     </form>
+    
 </div>
+<div id="deleteLivro">
+    <p>Tem certeza que deseja apagar o livro ?</p>
+    <button onclick="closeFormExclude()"class="btn btn-secondary">Cancelar</button>
+    <button onclick="confirmDelete()" class="btn btn-danger" style="margin-left: 120px;">Delete Item</button>
+</div>
+<div>
+    <ul style="list-style-type:none" class="box-cadastro">
+        <li class="item-box-cadastro">
+            <button onclick="openFormExclude()" class="btn btn-danger" >Delete Item</button>
+        </li>
+    </ul>
+</div> 
 {% endblock %}

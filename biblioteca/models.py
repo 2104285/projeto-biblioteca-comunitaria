@@ -173,6 +173,7 @@ class TbLivro(models.Model):
     autor = models.CharField(max_length=255, blank=True, null=True)
     classificacao = models.CharField(max_length=255, blank=True, null=True)
     na = models.IntegerField(db_column='NA', unique=True, blank=True, null=True)  # Field name made lowercase.
+    visivel = models.BooleanField(default=True)
 
     @property
     def status(self):
