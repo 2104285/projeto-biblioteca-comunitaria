@@ -6,39 +6,38 @@
 <script type="text/javascript" src="{% static 'js/DeleteLivro.js' %}"></script>
 <div class="box">
     <h3 class="titulo_leitor">Cadastrar Novo Livro</h3>   <!--título tabela-->
-    <form method="post">
-        {% csrf_token %}
-        <ul style="list-style-type:none" class="box-cadastro">
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">ID</p>
-                <input name='id' id="id" class="form-control" type="text" value="{{livro.livro_id}}" disabled>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">Tombo</p>
-                <input name="tombo" value="{{livro.tombo}}" class="form-control" type="number" placeholder="Tombo" size="20" autocomplete="off" required>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">Titulo</p>
-                <input name="titulo" value="{{livro.titulo}}" class="form-control" type="text" placeholder="Titulo do livro" size="30" autocomplete="off" required>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">Autor</p>
-                <input name="autor" value="{{livro.autor}}" class="form-control" type="text" placeholder="nome do autor" size="30" autocomplete="off" required>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">Classificação</p>
-                <input name="classificacao" value="{{livro.classificacao}}" class="form-control" type="text" placeholder="infantil/juvenil/adulto" size="25" autocomplete="off" required>
-            </li>
-            <li class="item-box-cadastro">
-                <p class="label-cadastro">NA</p>
-                <input name="na" class="form-control" value="{{livro.na}}" type="number"  id="n" size="20" required>
-            </li>
-            <li class="item-box-cadastro">
-                <input class="btn btn-primary" type="submit" value="Salvar">
-            </li>
-        </ul>
-    </form>
-    
+        <form method="post" class="box-cadastro">
+            {% csrf_token %}
+            <ul style="list-style-type:none" >
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">ID</p>
+                    <input name='id' id="id" class="form-control" type="text" value="{{livro.livro_id}}" disabled>
+                </li>
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">Tombo</p>
+                    <input name="tombo" value="{{livro.tombo}}" class="form-control" type="number" placeholder="Tombo" size="20" autocomplete="off" required>
+                </li>
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">Titulo</p>
+                    <input name="titulo" value="{{livro.titulo}}" class="form-control" type="text" placeholder="Titulo do livro" size="30" autocomplete="off" required>
+                </li>
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">Autor</p>
+                    <input name="autor" value="{{livro.autor}}" class="form-control" type="text" placeholder="nome do autor" size="30" autocomplete="off" required>
+                </li>
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">Classificação</p>
+                    <input name="classificacao" value="{{livro.classificacao}}" class="form-control" type="text" placeholder="infantil/juvenil/adulto" size="25" autocomplete="off" required>
+                </li>
+                <li class="item-box-cadastro">
+                    <p class="label-cadastro">NA</p>
+                    <input name="na" class="form-control" value="{{livro.na}}" type="number"  id="n" size="20" required>
+                </li>
+                <li class="item-box-cadastro">
+                    <input class="btn btn-primary" type="submit" value="Salvar">
+                </li>
+            </ul>
+        </form>
 </div>
 <div id="deleteLivro">
     <p>Tem certeza que deseja apagar o livro ?</p>

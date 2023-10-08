@@ -159,50 +159,7 @@ def acervo_geral(request):
     return render(request, 'biblioteca/wp41_acervo-geral.html',
                   {"livro":page_obj,"tombo":tombo,"nome": titulo, "autor": autor,"classificacao": classificacao})
 
-def generate_pdf_acervo(request):
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="livros.pdf"'
 
-    # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
-
-    # Define the width and height of each row in the table
-    row_height = 20
-    column_width = 80
-
-    # Define the data to be printed in the table
-    data = [
-        ['Tombo', 'Titulo','Autor','Classificação'],
-    ]
-    for obj in TbLivro.objects.all().order_by('titulo'):
-        data.append([obj.tombo, obj.titulo, obj.autor, obj.classificacao])
-
-    # Draw the table
-    x = 50
-    y = 800
-    for row in data:
-        item_num = 1
-        for item in row:
-            if item_num == 1:
-                column_width = 50
-            elif item_num == 2:
-                column_width = 200
-            else:
-                column_width = 200
-            p.drawString(x, y, str(item)[0:30])
-            item_num += 1
-            x += column_width
-        x = 50
-        y -= row_height
-        if y <= 50: # add another page
-            y = 750
-            p.showPage()
-
-    # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
-
-    return response
 
 def cadastro_acervo(request):
     if request.method == "POST":

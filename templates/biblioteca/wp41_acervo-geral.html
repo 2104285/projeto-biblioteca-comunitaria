@@ -3,32 +3,35 @@
 {% block content %}
 <div class="box">
     <h3 class="titulo_leitor">Acervo Geral</h3>
-    <form action="{% url 'acervo-geral' %}" class="box-filtro">
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <li>
-                <input name="tombo" class="form-control input-filtro" type="text" placeholder="tombo" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="titulo" class="form-control input-filtro" type="text" placeholder="Nome do Livro" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="autor" class="form-control input-filtro" type="text" placeholder="Autor Livro" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="classificacao" class="form-control input-filtro" type="text" placeholder="Classificação" size="30" autocomplete="off">
-            </li>
-        </ul>
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <a href="{% url 'acervo-geral' %}">
+    <div class="box-filtro">
+        <form action="{% url 'acervo-geral' %}" style="display: inline;">
+            <ul style="list-style-type:none" class="box-filtro-leitor">
                 <li>
-                    <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                    <input name="tombo" class="form-control input-filtro" type="text" placeholder="tombo" size="30" autocomplete="off">
                 </li>
-            </a>
-            <li>
-                <button  class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
-            </li>
-        </ul>
-    </form>
+                <li>
+                    <input name="titulo" class="form-control input-filtro" type="text" placeholder="Nome do Livro" size="30" autocomplete="off">
+                </li>
+                <li>
+                    <input name="autor" class="form-control input-filtro" type="text" placeholder="Autor Livro" size="30" autocomplete="off">
+                </li>
+                <li>
+                    <input name="classificacao" class="form-control input-filtro" type="text" placeholder="Classificação" size="30" autocomplete="off">
+                </li>
+            </ul>
+            <ul style="list-style-type:none" class="box-filtro-leitor">
+                <a href="{% url 'acervo-geral' %}">
+                    <li>
+                        <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                    </li>
+                </a>
+                <li>
+                    <button  class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
+                </li>
+            </ul>
+        </form>
+        <a href="{% url 'generate-pdf-acervo' %}"><button  class="btn btn-info botao-filtro" >Gerar Pdf</button></a>
+    </div>
     <table class="table table-striped table-bordered table-condensed table-hover">                  <!--criar tabela-->
         <thead>                         <!--cabeça da tabela-->
             <tr>                        <!--criar o nome das colunas-->
