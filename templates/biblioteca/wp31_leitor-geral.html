@@ -7,29 +7,34 @@
 
 <div class="box">
     <h3 class="titulo_leitor">Relação Completa de Leitores</h3>
-    <form action="{% url 'leitor-geral' %}" class="box-filtro">
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <li>
-                <input name="id" class="form-control input-filtro" type="text" placeholder="Insira o ID" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="nome" class="form-control input-filtro" type="text" placeholder="Insira o nome" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="telefone"class="form-control input-filtro" type="tel" size="20" autocomplete="off" placeholder="Telefone">
-            </li>
-        </ul>
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <a href="{% url 'leitor-geral' %}">
+    <div class="box-filtro">
+        <form action="{% url 'leitor-geral' %}"  style="display: inline;">
+            <ul style="list-style-type:none" class="box-filtro-leitor">
                 <li>
-                    <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                    <input name="id" class="form-control input-filtro" type="text" placeholder="Insira o ID" size="30" autocomplete="off">
                 </li>
-            </a>
-            <li>
-                <button  class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
-            </li>
-        </ul>
-    </form>
+                <li>
+                    <input name="nome" class="form-control input-filtro" type="text" placeholder="Insira o nome" size="30" autocomplete="off">
+                </li>
+                <li>
+                    <input name="telefone"class="form-control input-filtro" type="tel" size="20" autocomplete="off" placeholder="Telefone">
+                </li>
+            </ul>
+            <ul style="list-style-type:none" class="box-filtro-leitor">
+                <a href="{% url 'leitor-geral' %}">
+                    <li>
+                        <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                    </li>
+                </a>
+                <li>
+                    <button  class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
+                </li>
+                
+            </ul>
+        </form>
+        <a href="{% url 'generate-pdf-leitor' %}"><button  class="btn btn-info botao-filtro" >Gerar Pdf</button></a>
+    </div>
+    
     <table class="table table-striped table-bordered table-condensed table-hover">
         <thead>                         <!--cabeça da tabela-->
             <tr>                        <!--criar o nome das colunas-->

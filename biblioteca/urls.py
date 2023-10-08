@@ -11,7 +11,7 @@ urlpatterns = [
     path('leitor-geral/delete/<int:id>', remove_visility_leitor, name='leitor-geral'),
     path('cadastro-leitor/', cadastro_leitor, name='cadastro-leitor'),
     path('acervo-geral', acervo_geral, name='acervo-geral'),
-    path('acervo-geral/get-pdf', generate_pdf_acervo, name='generate-pdf-leitor'),
+    path('acervo-geral/get-pdf', generate_pdf_acervo, name='generate-pdf-acervo'),
     path('acervo-geral/<int:id>', update_acervo, name='acervo-geral'),
     path('acervo-geral/delete/<int:id>', remove_visility_acervo),
     path('cadastro-acervo/', cadastro_acervo, name='cadastro-acervo'),
