@@ -18,9 +18,10 @@ urlpatterns = [
     path('cadastro-acervo/', cadastro_acervo, name='cadastro-acervo'),
     path('emprestimo', emprestimo, name='emprestimo'),
     path('emprestimo/<int:id>', emprestimo_edit, name='emprestimo'),
+    path('emprestimo/get-pdf', generate_pdf_emprestimo, name='generate-pdf-emprestimo'),
     path('cadastro-emprestimo', cadastro_emprestimo, name='cadastro-emprestimo'),
     path('json/leitor/<int:id>', json_leitor),
     path('json/getEmprestimoByLeitor/<int:id>', json_get_emprestimo_by_leitorId),
     path('json/getQtyLivroDisponivel', json_get_livros_dispoiveis),
-    path('json/getLivroStatusByID/<int:id>', json_get_livro_status_by_id)
+    path('json/getLivroStatusByID/<int:id>', json_get_livro_status_by_id),
 ]
