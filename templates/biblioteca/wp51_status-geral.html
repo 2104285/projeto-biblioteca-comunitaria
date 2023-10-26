@@ -75,7 +75,7 @@
                     <form method="post">
                         {% csrf_token %}
                         <input name="id" value="{{emprestimo.id}}" type="hidden">
-                        <button name="add_14_days" class="botao-icone" type="submit">&#x1F504</button>
+                        <button name="add_14_days" class="botao-icone" type="submit" id="renovar" >&#x1F504</button>
                     </form>
                 </td>      
             </tr>
@@ -100,4 +100,28 @@
         </span>
     </div>
 </div>
+
+<script> //confirmação de renovação do empréstimo - ainda em desenvolvimento
+    /*const renovar = document.querySelector("#renovar")
+
+    renovar.addEventListener("click", () =>{
+        confirm("Deseja renovar ?"){
+            if (renovar == true){
+                alert("Renovado com sucesso!");
+            }
+            else{
+                alert("Cancelado");
+            }
+        }
+    })*/
+    /* abaixo, tenho que testar
+    var renovar=confirm("Deseja renovar o empréstimo ?");
+    if (renovar == true){
+        alert("Renovação realizada com sucesso!");
+    }
+    else{
+        alert("Renovação cancelada!");
+    }*/
+</script>
+
 {% endblock %}

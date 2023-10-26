@@ -1,4 +1,7 @@
 {% load static %}
+
+<script type="text/javascript" src="{% static 'js/Vlibras.js' %}"></script>
+
 <nav>                                                   <!--menu de navegação-->
     <ul>                                                <!--lista não ordenada-->
         <li>                                            <!--itens da lista-->
@@ -31,4 +34,13 @@
             <a href="wp6_logout.html">Sair &#10149</a>                 <!--logout, &#10149 indicação de sair-->
         </li>
     </ul>
+    <li id="translate">                                 <!--acessibilidade - idiomas-->
+        <div class="gtranslate_wrapper">Idioma</div>    <!--104 idiomas-->
+    </li>                                               <!--gtranslate.io-->
+    <div vw class="enabled">                            <!--acessibilidade libras_linhas 37 a 42-->
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>                                            <!--fim libras-->
 </nav>
