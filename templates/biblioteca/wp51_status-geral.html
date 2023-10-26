@@ -3,43 +3,46 @@
 {% block content %}
 <div class="box">
     <h3 class="titulo_leitor">Status dos Livros Emprestados:</h3>                                    <!--resultado da busca-->
-    <form class="box-filtro">
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <li>
-                <input name="leitor_id" class="form-control input-filtro" type="text" placeholder="ID Leitor" size="30" autocomplete="off">
-            </li>
-            <li>
-                <input name="tombo" class="form-control input-filtro" type="text" placeholder="Tombo" size="30" autocomplete="off">
-            </li>
-            <li>
-                <p class="filter-label">Data Emprestimo</p>
-                <input name="data_emprestimo" class="form-control input-filtro" type="date">
-            </li>
-            <li>
-                <p class="filter-label">Data Devolução</p>
-                <input name="data_devolucao" class="form-control input-filtro" type="date">
-            </li>
-            <li>
-                <p class="filter-label">Status</p>
-                <select name='entrega' class="form-select input-filtro">
-                    <option value=""></option>                    
-                    <option value="Entregue">Entregue</option>
-                    <option value="Não Entregue">Não Entregue</option>
-                    <option value="Atrasado">Atrasado</option>
-            </select>
-            </li>
-        </ul>
-        <ul style="list-style-type:none" class="box-filtro-leitor">
-            <li >
-                <a href="{% url 'emprestimo' %}">
-                    <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
-                </a>
-            </li>
-            <li>
-                <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
-            </li>
-        </ul>
-    </form>
+    <div class="box-filtro">
+        <form>
+            <ul style="list-style-type:none" class="box-filtro-leitor">
+                <li>
+                    <input name="leitor_id" class="form-control input-filtro" type="text" placeholder="ID Leitor" size="30" autocomplete="off">
+                </li>
+                <li>
+                    <input name="tombo" class="form-control input-filtro" type="text" placeholder="Tombo" size="30" autocomplete="off">
+                </li>
+                <li>
+                    <p class="filter-label">Data Emprestimo</p>
+                    <input name="data_emprestimo" class="form-control input-filtro" type="date">
+                </li>
+                <li>
+                    <p class="filter-label">Data Devolução</p>
+                    <input name="data_devolucao" class="form-control input-filtro" type="date">
+                </li>
+                <li>
+                    <p class="filter-label">Status</p>
+                    <select name='entrega' class="form-select input-filtro">
+                        <option value=""></option>                    
+                        <option value="Entregue">Entregue</option>
+                        <option value="Não Entregue">Não Entregue</option>
+                        <option value="Atrasado">Atrasado</option>
+                </select>
+                </li>
+            </ul>
+            <ul style="list-style-type:none" class="box-filtro-leitor">
+                <li >
+                    <a href="{% url 'emprestimo' %}">
+                        <button type="button" class="btn btn-outline-primary botao-filtro">Limpar</button>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-primary botao-filtro" type="submit">Filtrar</button>
+                </li>
+            </ul>
+        </form>
+        <a href="{% url 'generate-pdf-emprestimo' %}"><button  class="btn btn-info botao-filtro" >Gerar Pdf</button></a>
+    </div>
     <table class="table table-striped table-bordered table-condensed table-hover">      <!--criar tabela-->
         <thead>                         <!--cabeça da tabela-->
             <tr>                        <!--criar o nome das colunas-->
