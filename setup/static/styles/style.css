@@ -290,3 +290,13 @@ h3{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F5F5F5;
+    border-radius: 10px
+}

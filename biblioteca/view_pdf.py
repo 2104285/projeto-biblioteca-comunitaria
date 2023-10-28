@@ -83,6 +83,30 @@ def generate_pdf_emprestimo(request):
     buffer = io.BytesIO()
     pdf = SimpleDocTemplate(buffer,pagesize=landscape(A4))
     emprestimo = TbEmprestimo.objects.all().order_by("data_emprestimo")
+
+    if "entrega" in request.GET:
+        entrega = request.GET["entrega"]
+        if entrega != "":
+            for x in emprestimo:
+                if x.status != entrega:
+                    emprestimo = emprestimo.exclude(id=x.id)
+    if "data_emprestimo_de" in request.GET:
+        data_emprestimo_de = request.GET["data_emprestimo_de"]
+        if data_emprestimo_de != "":
+            emprestimo = emprestimo.filter(data_emprestimo__gte=data_emprestimo_de)
+    if "data_emprestimo_ate" in request.GET:
+        data_emprestimo_ate = request.GET["data_emprestimo_ate"]
+        if data_emprestimo_ate != "":
+            emprestimo = emprestimo.filter(data_emprestimo__lte=data_emprestimo_ate)
+    if "data_devolucao_de" in request.GET:
+        data_devolucao_de = request.GET["data_devolucao_de"]
+        if data_devolucao_de != "":
+            emprestimo = emprestimo.filter(data_devolucao__gte=data_devolucao_de)
+    if "data_devolucao_ate" in request.GET:
+        data_devolucao_ate = request.GET["data_devolucao_ate"]
+        if data_devolucao_ate != "":
+            emprestimo = emprestimo.filter(data_devolucao__lte=data_devolucao_ate)
+
     normal_style = getSampleStyleSheet()['Normal']
     normal_style.fontName = 'Helvetica-Bold'
     data = [[Paragraph("ID", normal_style), Paragraph("Leitor", normal_style), Paragraph("Endereço", normal_style), 
@@ -116,6 +140,28 @@ def generate_pdf_emprestimo(request):
     elements = []
     elements.append(Paragraph(f'Extração Emprestimos', getSampleStyleSheet()['Title']))
     elements.append(Paragraph(f'Extraido na data de {dt.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}', getSampleStyleSheet()['Normal']))
+    #filtros
+    if "entrega" in request.GET:
+        entrega = request.GET["entrega"]
+        if entrega != "":
+            elements.append(Paragraph(f'Filtro: Status = {entrega}', getSampleStyleSheet()['Normal'])) 
+    if "data_emprestimo_de" in request.GET:
+        data_emprestimo_de = request.GET["data_emprestimo_de"]
+        if data_emprestimo_de != "":
+            elements.append(Paragraph(f'Filtro: Data Empréstimo >= {data_emprestimo_de}', getSampleStyleSheet()['Normal']))
+    if "data_emprestimo_ate" in request.GET:
+        data_emprestimo_ate = request.GET["data_emprestimo_ate"]
+        if data_emprestimo_ate != "":
+            elements.append(Paragraph(f'Filtro: Data Empréstimo <= {data_emprestimo_ate}', getSampleStyleSheet()['Normal']))
+    if "data_devolucao_de" in request.GET:
+        data_devolucao_de = request.GET["data_devolucao_de"]
+        if data_devolucao_de != "":
+            elements.append(Paragraph(f'Filtro: Data Devolução >= {data_devolucao_de}', getSampleStyleSheet()['Normal']))
+    if "data_devolucao_ate" in request.GET:
+        data_devolucao_ate = request.GET["data_devolucao_ate"]
+        if data_devolucao_ate != "":
+            elements.append(Paragraph(f'Filtro: Data Devolução <= {data_devolucao_ate}', getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph(f'', getSampleStyleSheet()['Normal']))
     elements.append(table)
     pdf.build(elements)
     buffer.seek(0)

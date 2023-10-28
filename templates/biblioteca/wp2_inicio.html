@@ -1,4 +1,5 @@
 {% extends 'biblioteca/base.html' %}
+{%load plotly_dash%}
 {% load static %}
 {% block title%}Inicio{% endblock%}
 {% block content %}
@@ -22,6 +23,10 @@
         </tbody>
     </table>
 </div>
+
+{% plotly_header %}
+{% plotly_direct name="SimpleExample" %}
+{% plotly_footer %}
 <div>
     <img src="{% static '/img/logo500x500.jpeg' %}" alt="biblioteca comunitária Djeanne Firmino">
     <h5 class="site">Para acessar site vinculado, <a href="https://linktr.ee/bcdjeannefirmino" target="_blank">clique aqui</a></h5>

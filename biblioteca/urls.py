@@ -2,6 +2,7 @@ from django.urls import path
 from biblioteca.views import *
 from biblioteca.view_json import *
 from biblioteca.view_pdf import *
+from biblioteca.dashboard import dashboard
 
 urlpatterns = [
     path('', inicio),

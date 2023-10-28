@@ -1,7 +1,9 @@
 {% extends 'biblioteca/base.html' %}
 {% block title%}Emprestimo{% endblock %}
+{% load static %}
 {% block content %}
-<div class="box">
+<script type="text/javascript" src="{% static 'js/Get-PDF-emprestimo.js' %}"></script>
+<div class="box" id="box">
     <h3 class="titulo_leitor">Status dos Livros Emprestados:</h3>                                    <!--resultado da busca-->
     <div class="box-filtro">
         <form>
@@ -41,7 +43,41 @@
                 </li>
             </ul>
         </form>
-        <a href="{% url 'generate-pdf-emprestimo' %}"><button  class="btn btn-info botao-filtro" >Gerar Pdf</button></a>
+        <button  class="btn btn-info botao-filtro" onclick="openFormPDF()" >Gerar Pdf</button>
+        <div style="width: 60%;padding: 10px;border: 1px solid rgb(70, 70, 70)" class="popup" id="gerar-pdf">
+            <form action="http://127.0.0.1:8000/emprestimo/get-pdf" method="get" style="display: flex;align-items: center;align-content: center;flex-wrap: wrap;">
+                <p style="text-align: center; width: 100%;">Escolha os filtros para gerar o PDF</p>
+                <ul style="list-style-type:none;width: 100%;">
+                    <li style="display: inline-block;margin: 5px;">
+                        <p class="filter-label">Data Emprestimo DE:</p>
+                        <input name="data_emprestimo_de" class="form-control input-filtro" type="date">
+                    </li>
+                    <li style="display: inline-block;margin: 5px;">
+                        <p class="filter-label">Data Emprestimo Até:</p>
+                        <input name="data_emprestimo_ate" class="form-control input-filtro" type="date">
+                    </li>
+                    <li style="display: inline-block;margin: 5px;">
+                        <p class="filter-label">Data Devolução DE</p>
+                        <input name="data_devolucao_de" class="form-control input-filtro" type="date">
+                    </li>
+                    <li style="display: inline-block;margin: 5px;">
+                        <p class="filter-label">Data Devolução Até</p>
+                        <input name="data_devolucao_ate" class="form-control input-filtro" type="date">
+                    </li>
+                    <li style="display: inline-block;margin: 5px;">
+                        <p class="filter-label">Status</p>
+                        <select name='entrega' class="form-select input-filtro">
+                            <option value=""></option>                    
+                            <option value="Entregue">Entregue</option>
+                            <option value="Não Entregue">Não Entregue</option>
+                            <option value="Atrasado">Atrasado</option>
+                        </select>
+                    </li>
+                    <button  class="btn btn-info botao-filtro" type="submit" >Gerar PDF</button>
+                </ul>
+            </form>
+        </div>
+        
     </div>
     <table class="table table-striped table-bordered table-condensed table-hover">      <!--criar tabela-->
         <thead>                         <!--cabeça da tabela-->
