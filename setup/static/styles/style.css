@@ -300,3 +300,17 @@ h3{
     background-color: #F5F5F5;
     border-radius: 10px
 }
+
+.container{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card{
+    margin: 10px;
+    height: 100%;
+}

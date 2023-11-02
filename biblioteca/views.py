@@ -4,15 +4,27 @@ from biblioteca.models import TbLeitor, TbLivro, TbEmprestimo
 import datetime as dt
 from django.shortcuts import render
 from reportlab.pdfgen import canvas
+import pandas as pd
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
 def inicio(request):
     qty_livro = TbLivro.objects.filter(visivel=True)
-    qty_emprestado = TbEmprestimo.objects.all().filter(data_devolucao = None).count()
+    emprestimo = TbEmprestimo.objects.all()
+    qty_emprestado = emprestimo.filter(data_devolucao = None).count()
+    qty_emprestimo_total = emprestimo.count()
+    leitor = TbLeitor.objects.all().filter(visivel=True)
+    qty_leitor = leitor.count()
+
+    df_emprestimo = pd.DataFrame(TbEmprestimo.objects.all().values())
+    qty_leitor_emprestimo = df_emprestimo["leitor_id"].unique().size
     return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro.count(), 
-                                                        "qty_emprestado": qty_emprestado})
+                                                        "qty_emprestado": qty_emprestado,
+                                                        "qty_disponivel": qty_livro.count() - qty_emprestado,
+                                                        "qty_leitor": qty_leitor,
+                                                        "qty_leitor_emprestimo": qty_leitor_emprestimo,
+                                                        "qty_emprestimo_total": qty_emprestimo_total})
 
 def leitor_geral(request):
     leitor = TbLeitor.objects.filter(visivel = True)
