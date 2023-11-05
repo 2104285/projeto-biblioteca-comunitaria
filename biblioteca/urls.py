@@ -15,3 +15,5 @@ urlpatterns = [
     path('emprestimo/<int:id>', emprestimo_edit, name='emprestimo'),
     path('cadastro-emprestimo', cadastro_emprestimo, name='cadastro-emprestimo')
 ]
+
+handler404 = "biblioteca.views.handler404"
