@@ -117,10 +117,18 @@ def update_graph_livro_p_empresstimo(value,start_date,end_date):
     df_emprestimo_livro = df_emprestimo_livro.groupby(["bairro","classificacao"]).sum().reset_index()
     if value == "Todos":
         figure1 = bar(df_emprestimo_livro, x="classificacao", y="count",color="bairro",title="Livros por Classificação")
+        figure1.update_layout(
+            xaxis_title="Classificação",
+            yaxis_title="Quantidade de livros",
+            title_text="Livros por Classificação")
         return figure1
     else:
         df_emprestimo_livro = df_emprestimo_livro[df_emprestimo_livro["bairro"] == value]
         figure1 = bar(df_emprestimo_livro, x="classificacao", y="count", title="Livros por Classificação")
+        figure1.update_layout(
+            xaxis_title="Classificação",
+            yaxis_title="Quantidade de livros",
+            title_text="Livros por Classificação")
         return figure1
     
 
@@ -170,4 +178,8 @@ def update_graph_livro_status(value,start_date,end_date):
     df_emprestimo_livro = df_emprestimo_livro[["status","count","bairro"]]
     df_emprestimo_livro = df_emprestimo_livro.groupby(["status"]).sum().reset_index()
     figure1 = bar(df_emprestimo_livro, x="status", y="count", title="Livros por Status")
+    figure1.update_layout(
+        xaxis_title="Status",
+        yaxis_title="Quantidade de livros",
+        title_text="Livros por Status")
     return figure1
