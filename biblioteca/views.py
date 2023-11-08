@@ -296,3 +296,6 @@ def emprestimo_edit(request,id):
     else:
         emprestimo = TbEmprestimo.objects.get(pk = id)
         return render(request, 'biblioteca/wp52_edit-emprestimo.html', {"emprestimo":emprestimo})
+
+def handler404(resquest, exception):
+    return render(request, '404.html')
