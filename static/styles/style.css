@@ -315,3 +315,33 @@ h3{
     height: 100%;
 }
 
+#bodycredito{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    
+}
+
+.credits{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-around;
+    margin: 0;
+}
+
+.personcredito {
+    width: 100px;
+    margin: 10px;
+}
+
+.personcredito img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.personcredito a {
+    text-decoration: none;
+}

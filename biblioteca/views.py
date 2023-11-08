@@ -7,7 +7,7 @@ from reportlab.pdfgen import canvas
 import pandas as pd
 
 def credito(request):
-    return render(request, 'biblioteca\wp53_credito.html')
+    return render(request, 'biblioteca/wp53_credito.html')
 
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
