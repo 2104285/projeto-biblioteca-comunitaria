@@ -1,0 +1,54 @@
+
+{% extends 'biblioteca/base.html' %}
+{% block title %}crédito{% endblock %}
+{% block content %}
+{% load static %}
+<script type="text/javascript" src="{% static 'js/telaInicio.js' %}"> </script>
+<header>
+    <h1>Créditos do grupo responsável</h1>
+</head>
+
+<body id="bodycredito">
+
+    <div class="credits">
+        <div class="personcredito">
+            <img src="static\img\perfil_adyen.jpeg" alt="Pessoa 1">
+            <p><a href="https://www.linkedin.com/in/jony-kennedy-silva-488395140/" target="_blank">Jony Kennedy</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 2">
+            <p><a href="https://www.linkedin.com" target="_blank">Roger Miyagaki</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 3">
+            <p><a href="https://www.linkedin.com" target="_blank">Eduardo Souza</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 4">
+            <p><a href="https://www.linkedin.com" target="_blank">Douglas Silva</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 5">
+            <p><a href="https://www.linkedin.com" target="_blank">Karina Araújo</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 6">
+            <p><a href="https://www.linkedin.com" target="_blank">Samuel Martin Santos</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 7">
+            <p><a href="https://www.linkedin.com" target="_blank">Rafael Garcia</a></p>
+        </div>
+        <div class="personcredito">
+            <img src="static\img\anonimo.jpeg"  alt="Pessoa 8">
+            <p><a href="https://www.linkedin.com/in/pessoa8" target="_blank">Ercules Oliveira</a></p>
+        </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Copyright © 2023</p>
+  </footer>
+
+ 
+{% endblock %}

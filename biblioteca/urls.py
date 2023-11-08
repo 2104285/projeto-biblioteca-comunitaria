@@ -25,4 +25,6 @@ urlpatterns = [
     path('json/getEmprestimoByLeitor/<int:id>', json_get_emprestimo_by_leitorId),
     path('json/getQtyLivroDisponivel', json_get_livros_dispoiveis),
     path('json/getLivroStatusByID/<int:id>', json_get_livro_status_by_id),
+    path('credito', credito, name="credito"),
+
 ]

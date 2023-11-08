@@ -6,6 +6,9 @@ from django.shortcuts import render
 from reportlab.pdfgen import canvas
 import pandas as pd
 
+def credito(request):
+    return render(request, 'biblioteca\wp53_credito.html')
+
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
@@ -296,3 +299,6 @@ def emprestimo_edit(request,id):
     else:
         emprestimo = TbEmprestimo.objects.get(pk = id)
         return render(request, 'biblioteca/wp52_edit-emprestimo.html', {"emprestimo":emprestimo})
+    
+
+    
