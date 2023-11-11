@@ -1,0 +1,2 @@
+call "C:\Users\rafin\Documents\Python Scripts\Projeto integrador\PI\projeto-biblioteca-comunitaria\venv\Scripts\activate.bat"
+call python "C:\Users\rafin\Documents\Python Scripts\Projeto integrador\PI\projeto-biblioteca-comunitaria\server.py"

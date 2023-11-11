@@ -26,7 +26,7 @@ Filtro de tempo
 """
 def get_emprestimo(data="emprestimo"):
     df_leitor = pd.DataFrame(TbLeitor.objects.all().values())
-    df_leitor["bairro"] = df_leitor["bairro"].str.capitalize()
+    #df_leitor["bairro"] = df_leitor["bairro"].str.capitalize()
     df_leitor["bairro"] = df_leitor["bairro"].str.strip()
     df_leitor["bairro"] = df_leitor["bairro"].str.replace(".","")
     df_leitor["bairro"] = df_leitor["bairro"].str.replace("Jardim","Jd")
