@@ -5,6 +5,7 @@ import datetime as dt
 from django.shortcuts import render
 from reportlab.pdfgen import canvas
 import pandas as pd
+from django.views.decorators.csrf import csrf_exempt
 
 def credito(request):
     return render(request, 'biblioteca/wp53_credito.html')
@@ -12,6 +13,7 @@ def credito(request):
 def index(request):
     return render(request, 'biblioteca/wp1_login.html')
 
+@csrf_exempt
 def inicio(request):
     qty_livro = TbLivro.objects.filter(visivel=True)
     emprestimo = TbEmprestimo.objects.all()
@@ -29,6 +31,7 @@ def inicio(request):
                                                         "qty_leitor_emprestimo": qty_leitor_emprestimo,
                                                         "qty_emprestimo_total": qty_emprestimo_total})
 
+@csrf_exempt
 def leitor_geral(request):
     leitor = TbLeitor.objects.filter(visivel = True)
     #filtros
@@ -54,6 +57,7 @@ def leitor_geral(request):
     return render(request,'biblioteca/wp31_leitor-geral.html',
                   {"leitor": page_obj, "id":id,"nome":nome,"telefone":telefone})
 
+@csrf_exempt
 def generate_pdf_leitor(request):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="leitor.pdf"'
@@ -100,6 +104,7 @@ def generate_pdf_leitor(request):
     return response
 
 
+@csrf_exempt
 def cadastro_leitor(request):
     if request.method == "POST":
         cadastro = TbLeitor()
@@ -118,6 +123,7 @@ def cadastro_leitor(request):
     else:
         return render(request, 'biblioteca/wp32_novo-leitor.html')
 
+@csrf_exempt
 def update_leitor(request,id):
     if request.method == "POST":
         leitor = TbLeitor.objects.get(pk=id)
@@ -137,13 +143,15 @@ def update_leitor(request,id):
         leitor = TbLeitor.objects.all()
         leitor = get_object_or_404(leitor, pk=id)
         return render(request, 'biblioteca/wp33_update-leitor.html',{"leitor":leitor})
-    
+
+@csrf_exempt
 def remove_visility_leitor(request,id):
     leitor = TbLeitor.objects.filter(leitor_id=id).get()
     leitor.visivel = False
     leitor.save()
     return leitor_geral(request)
 
+@csrf_exempt
 def acervo_geral(request):
     livro = TbLivro.objects.filter(visivel=True)
     #filtros
@@ -175,7 +183,7 @@ def acervo_geral(request):
                   {"livro":page_obj,"tombo":tombo,"nome": titulo, "autor": autor,"classificacao": classificacao})
 
 
-
+@csrf_exempt
 def cadastro_acervo(request):
     if request.method == "POST":
         livro = TbLivro()
@@ -189,6 +197,7 @@ def cadastro_acervo(request):
     else:
         return render(request, 'biblioteca/wp42_novo-livro.html')
 
+@csrf_exempt
 def update_acervo(request,id):
     if request.method == "POST":
         livro = TbLivro.objects.get(pk=id)
@@ -204,12 +213,14 @@ def update_acervo(request,id):
         livro = get_object_or_404(livro, pk=id)
         return render(request, 'biblioteca/wp43_update_acervo.html',{"livro":livro})
 
+@csrf_exempt
 def remove_visility_acervo(request,id):
     leitor = TbLivro.objects.get(pk=id)
     leitor.visivel = False
     leitor.save()
     return inicio(request)
 
+@csrf_exempt
 def emprestimo(request):
     if request.method == "POST" and "add_14_days" in request.POST:
         emprestimo = TbEmprestimo.objects.get(pk = request.POST["id"])
@@ -258,6 +269,7 @@ def emprestimo(request):
                    "data_emprestimo":data_emprestimo,
                    "entrega":entrega} )
 
+@csrf_exempt
 def cadastro_emprestimo(request):
     if request.method == "POST":
         emprestimo = TbEmprestimo()
@@ -280,7 +292,8 @@ def cadastro_emprestimo(request):
         leitor = TbLeitor.objects.all().order_by("nome")
         livro = TbLivro.objects.all().order_by("titulo")
         return render(request, 'biblioteca/wp52_novo-emprestimo.html',{"leitor":leitor, "livro":livro})
-    
+
+@csrf_exempt
 def emprestimo_edit(request,id):
     
     if request.method == "POST":
