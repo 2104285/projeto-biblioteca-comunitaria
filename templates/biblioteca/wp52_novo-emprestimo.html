@@ -7,7 +7,7 @@
     <ul style="list-style-type:none" class="box-cadastro">
         <li class="item-box-cadastro">
             <p class="label-cadastro">Nome do leitor</p>
-            <select name="leitor_id" class="form-select">
+            <select name="leitor_id" class="form-select" required>
                 <option value=""></option>
                 {% for leitor in leitor %}
                 <option value="{{leitor.leitor_id}}">{{leitor.nome}}</option>
@@ -16,7 +16,7 @@
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Titulo / tombo</p>
-            <select name="tombo" class="form-select">
+            <select name="tombo" class="form-select" required>
                 <option value=""></option>
                 {% for livro in livro %}
                 <option value="{{livro.tombo}}">{{livro.titulo}} / tombo: {{livro.tombo}}</option>
@@ -25,11 +25,11 @@
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Data Emprestimo</p>
-            <input name="data_emprestimo" class="form-control" type="date" size="5">
+            <input name="data_emprestimo" class="form-control" type="date" size="5" required>
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Prazo Devolução Prevista</p>
-            <input name="data_devolucao_prevista" class="form-control" type="date" size="5">
+            <input name="data_devolucao_prevista" class="form-control" type="date" size="5" required>
         </li>
         <li class="item-box-cadastro">
             <p class="label-cadastro">Observação emprestimo</p>
