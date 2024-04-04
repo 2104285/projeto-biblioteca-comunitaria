@@ -4,8 +4,11 @@ from biblioteca.view_json import *
 from biblioteca.view_pdf import *
 import os
 
-if os.environ.get('TESTING') != 'True':
-    from biblioteca.dashboard import dashboard
+try:
+    if os.environ.get('TESTING') != 'True':
+        from biblioteca.dashboard import dashboard
+except:
+    pass
 
 urlpatterns = [
     path('', inicio),

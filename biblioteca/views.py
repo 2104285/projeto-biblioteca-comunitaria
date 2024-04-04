@@ -23,13 +23,23 @@ def inicio(request):
     qty_leitor = leitor.count()
 
     df_emprestimo = pd.DataFrame(TbEmprestimo.objects.all().values())
-    qty_leitor_emprestimo = df_emprestimo["leitor_id"].unique().size
+    try:
+        qty_leitor_emprestimo = df_emprestimo["leitor_id"].unique().size
+    except:
+        qty_leitor_emprestimo = 0
+    
+    if qty_emprestimo_total == 0:
+        display_dashboard = None
+    else:
+        display_dashboard = True
+
     return render(request,'biblioteca/wp2_inicio.html',{"qty_livro": qty_livro.count(), 
                                                         "qty_emprestado": qty_emprestado,
                                                         "qty_disponivel": qty_livro.count() - qty_emprestado,
                                                         "qty_leitor": qty_leitor,
                                                         "qty_leitor_emprestimo": qty_leitor_emprestimo,
-                                                        "qty_emprestimo_total": qty_emprestimo_total})
+                                                        "qty_emprestimo_total": qty_emprestimo_total,
+                                                        "display_dashboard": display_dashboard})
 
 @csrf_exempt
 def leitor_geral(request):
@@ -187,7 +197,7 @@ def acervo_geral(request):
 def cadastro_acervo(request):
     if request.method == "POST":
         livro = TbLivro()
-        livro.tombo = request.POST["tombo"]
+        livro.tombo = request.POST["tombo"] #alterar informação para inserir id no mesmo lugar do tombo
         livro.titulo = request.POST["titulo"]
         livro.autor = request.POST["autor"]
         livro.classificacao = request.POST["classificacao"]
