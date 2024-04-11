@@ -188,6 +188,12 @@ class TbLivro(models.Model):
         else:
             return "Disponível"
         
+    def save(self, *args, **kwargs):
+        """Foi realizado um override do método save para que o campo tombo seja igual ao campo livro_id."""
+        super().save(*args, **kwargs)
+        self.tombo = self.livro_id
+        super().save(update_fields=['tombo'])
+
     class Meta:
         managed = True
         db_table = 'tb_livro'

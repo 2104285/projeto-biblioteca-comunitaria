@@ -197,7 +197,7 @@ def acervo_geral(request):
 def cadastro_acervo(request):
     if request.method == "POST":
         livro = TbLivro()
-        livro.tombo = request.POST["tombo"] #alterar informação para inserir id no mesmo lugar do tombo
+        #livro.tombo = request.POST["tombo"] #alterar informação para inserir id no mesmo lugar do tombo
         livro.titulo = request.POST["titulo"]
         livro.autor = request.POST["autor"]
         livro.classificacao = request.POST["classificacao"]
@@ -211,7 +211,7 @@ def cadastro_acervo(request):
 def update_acervo(request,id):
     if request.method == "POST":
         livro = TbLivro.objects.get(pk=id)
-        livro.tombo = request.POST["tombo"]
+        #livro.tombo = request.POST["tombo"]
         livro.titulo = request.POST["titulo"]
         livro.autor = request.POST["autor"]
         livro.classificacao = request.POST["classificacao"]
